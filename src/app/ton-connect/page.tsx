@@ -42,7 +42,7 @@ export default function TONConnectPage() {
           amount: "1" //Toncoin in nanotons
         }
       ],
-      validUntil: 12000
+      validUntil: 1200000000000
     })
   }
 
