@@ -1,9 +1,10 @@
 'use client';
 
 import { useUtils } from '@telegram-apps/sdk-react';
-import { TonConnectButton, useTonWallet } from '@tonconnect/ui-react';
+import { TonConnectButton, useTonConnectUI, useTonWallet } from '@tonconnect/ui-react';
 import {
   Avatar,
+  Button,
   Cell,
   List,
   Navigation,
@@ -17,9 +18,33 @@ import { DisplayData } from '@/components/DisplayData/DisplayData';
 
 import './styles.css';
 
+const transaction = {
+  messages: [
+      {
+          address: "0:af8bc2328f2f1d34dde26a1189da2b24005e34c9d4beecf4752047f2548cc00d", // destination address
+          amount: "1" //Toncoin in nanotons
+      }
+  ]
+
+}
+
 export default function TONConnectPage() {
   const wallet = useTonWallet();
   const utils = useUtils();
+  const [tonConnectUI, setOptions] = useTonConnectUI();
+
+
+  function sendToOwnerAddress(){
+    tonConnectUI.sendTransaction({
+      messages: [
+        {
+          address: "0:af8bc2328f2f1d34dde26a1189da2b24005e34c9d4beecf4752047f2548cc00d", // destination address
+          amount: "1" //Toncoin in nanotons
+        }
+      ],
+      validUntil: 12000
+    })
+  }
 
   if (!wallet) {
     return (
@@ -79,6 +104,7 @@ export default function TONConnectPage() {
           { title: 'Public Key', value: publicKey },
         ]}
       />
+      <Button onClick={() => sendToOwnerAddress()}>Send To Owner Address</Button>
       <DisplayData
         header='Device'
         rows={[
