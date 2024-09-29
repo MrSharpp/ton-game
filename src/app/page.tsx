@@ -32,7 +32,7 @@ export default function Home() {
 
   return (
     <div style={{backgroundColor: 'black', textAlign: 'center', marginTop: '50%'}}>
-      <h1 style={{marginBottom: '50px'}}>Amir's Mini App</h1>
+      <h1 style={{marginBottom: '50px'}}>Amir Mini App</h1>
        <div style={{flexDirection: 'column', display: 'flex', gap: '50px', flexBasis: 'auto'}}>
        <Button href='/ton-connect' Component={'a'} className='btn'>
               Connect Wallet
