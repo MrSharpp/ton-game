@@ -39,11 +39,11 @@ export default function Home() {
        {!wallet && (<Button href='/ton-connect' Component={'a'} className='btn'>
               Connect Wallet
         </Button>)}
-        {!!wallet && (<Button   onClick={() => sendToOwnerAddress} Component={"a"} className='btn'>
+        {!!wallet && (<Button   onClick={() => sendToOwnerAddress} className='btn'>
          
             Make A Small Transaction (0.001 Ton)
         </Button>)}
-        <Button onClick={() => copyToClipBoard()} Component={"a"} className='btn'>
+        <Button onClick={() => copyToClipBoard()} className='btn'>
           
            Refferals
         </Button>
