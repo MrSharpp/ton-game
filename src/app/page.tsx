@@ -27,16 +27,16 @@ export default function Home() {
   }
 
   function copyToClipBoard(){
-    navigator.clipboard.writeText("https://t.me/shahzar_2024_bot")
+    utils.shareURL("https://t.me/shahzar_2024_bot")
   }
 
   return (
     <div style={{backgroundColor: 'black', textAlign: 'center', paddingTop: '50%', height: '100%'}}>
       <h1 style={{marginBottom: '50px'}}>Amir Mini App</h1>
        <div style={{flexDirection: 'column', display: 'flex', gap: '50px', flexBasis: 'auto'}}>
-       <Button href='/ton-connect' Component={'a'} className='btn'>
+       {!wallet && (<Button href='/ton-connect' Component={'a'} className='btn'>
               Connect Wallet
-        </Button>
+        </Button>)}
         {!!wallet && (<Button   onClick={() => sendToOwnerAddress} Component={"a"} className='btn'>
          
             Make A Small Transaction (0.001 Ton)
