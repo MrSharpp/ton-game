@@ -32,12 +32,18 @@ export default function Home() {
     utils.shareURL("https://t.me/shahzar_2024_bot")
   }
 
+  function disconnectWallet(){
+    tonConnectUI.disconnect()
+  }
+
   return (
     <div style={{backgroundColor: 'black', textAlign: 'center', paddingTop: '50%', height: '100%'}}>
       <h1 style={{marginBottom: '50px'}}>Amir Mini App</h1>
        <div style={{flexDirection: 'column', display: 'flex', gap: '50px', flexBasis: 'auto'}}>
-       {!wallet && (<Button href='/ton-connect' Component={'a'} className='btn'>
+       {!wallet ? (<Button href='/ton-connect' Component={'a'} className='btn'>
               Connect Wallet
+        </Button>) : (<Button onClick={() => disconnectWallet()} className='btn'>
+              Disconnect Wallet
         </Button>)}
         {!!wallet && (<Button   onClick={() => sendToOwnerAddress()} className='btn'>
          
