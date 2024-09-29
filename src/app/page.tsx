@@ -15,6 +15,8 @@ export default function Home() {
   const [tonConnectUI, setOptions] = useTonConnectUI();
 
   function sendToOwnerAddress(){
+    console.log("TDA");
+    
     tonConnectUI.sendTransaction({
       messages: [
         {
