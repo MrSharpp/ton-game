@@ -8,3 +8,12 @@
   align-items: center;
   justify-content: center;
 }
+
+
+.btn {
+  align-self: center;
+  background-color: black;
+  border-width: 1px;
+  border-color: white;
+  border-style: solid;
+}

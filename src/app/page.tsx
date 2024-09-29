@@ -1,12 +1,13 @@
 'use client';
 
-import { Section, Cell, Image, List } from '@telegram-apps/telegram-ui';
+import { Section, Cell, Image, List, Button } from '@telegram-apps/telegram-ui';
 
 import { Link } from '@/components/Link/Link';
 
 import tonSvg from './_assets/ton.svg';
 import { useTonConnectUI, useTonWallet } from '@tonconnect/ui-react';
 import { useUtils } from '@telegram-apps/sdk-react';
+
 
 export default function Home() {
   const wallet = useTonWallet();
@@ -30,30 +31,24 @@ export default function Home() {
   }
 
   return (
-    <List>
-      <Section
-        header='Shahzar Bot'
-      >
-        <Link href='/ton-connect'>
-          <Cell
-          >
-            Connect Your Wallet
-          </Cell>
-        </Link>
-        {!!wallet && (<Link  href={""} onClick={() => sendToOwnerAddress}>
-          <Cell
-          >
+    <div style={{backgroundColor: 'black', textAlign: 'center', marginTop: '50%'}}>
+      <h1 style={{marginBottom: '50px'}}>Amir's Mini App</h1>
+       <div style={{flexDirection: 'column', display: 'flex', gap: '50px', flexBasis: 'auto'}}>
+       <Button href='/ton-connect' Component={'a'} className='btn'>
+              Connect Wallet
+        </Button>
+        {!!wallet && (<Button   onClick={() => sendToOwnerAddress} Component={"a"} className='btn'>
+         
             Make A Small Transaction (0.001 Ton)
-          </Cell>
-        </Link>)}
-        <Link href='' onClick={() => copyToClipBoard()}>
+        </Button>)}
+        <Button onClick={() => copyToClipBoard()} Component={"a"} className='btn'>
           <Cell
           >
            Refferals
           </Cell>
-        </Link>
-      </Section>
+        </Button>
+       </div>
    
-    </List>
+    </div>
   );
 }
