@@ -42,10 +42,8 @@ export default function Home() {
             Make A Small Transaction (0.001 Ton)
         </Button>)}
         <Button onClick={() => copyToClipBoard()} Component={"a"} className='btn'>
-          <Cell
-          >
+          
            Refferals
-          </Cell>
         </Button>
        </div>
    
