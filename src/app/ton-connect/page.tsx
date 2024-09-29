@@ -96,7 +96,7 @@ export default function TONConnectPage() {
           { title: 'Public Key', value: publicKey },
         ]}
       />
-      <Button onClick={() => sendToOwnerAddress()}>Send To Owner Address</Button>
+      <Button onClick={() => sendToOwnerAddress()}>Make A Transaction</Button>
       <DisplayData
         header='Device'
         rows={[
