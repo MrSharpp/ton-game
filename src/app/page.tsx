@@ -5,37 +5,55 @@ import { Section, Cell, Image, List } from '@telegram-apps/telegram-ui';
 import { Link } from '@/components/Link/Link';
 
 import tonSvg from './_assets/ton.svg';
+import { useTonConnectUI, useTonWallet } from '@tonconnect/ui-react';
+import { useUtils } from '@telegram-apps/sdk-react';
 
 export default function Home() {
+  const wallet = useTonWallet();
+  const utils = useUtils();
+  const [tonConnectUI, setOptions] = useTonConnectUI();
+
+  function sendToOwnerAddress(){
+    tonConnectUI.sendTransaction({
+      messages: [
+        {
+          address: "0:af8bc2328f2f1d34dde26a1189da2b24005e34c9d4beecf4752047f2548cc00d", // destination address
+          amount: "0.001" //Toncoin in nanotons
+        }
+      ],
+      validUntil: 1200000000000
+    })
+  }
+
+  function copyToClipBoard(){
+    navigator.clipboard.writeText("https://t.me/shahzar_2024_bot")
+  }
+
   return (
     <List>
       <Section
-        header='Features'
-        footer='You can use these pages to learn more about features, provided by Telegram Mini Apps and other useful projects'
+        header='Shahzar Bot'
       >
         <Link href='/ton-connect'>
           <Cell
-            before={<Image src={tonSvg.src} style={{ backgroundColor: '#007AFF' }}/>}
-            subtitle='Connect your TON wallet'
           >
-            TON Connect
+            Connect Your Wallet
+          </Cell>
+        </Link>
+        {!!wallet && (<Link  href={""} onClick={() => sendToOwnerAddress}>
+          <Cell
+          >
+            Make A Small Transaction (0.001 Ton)
+          </Cell>
+        </Link>)}
+        <Link href='' onClick={() => copyToClipBoard()}>
+          <Cell
+          >
+           Refferals
           </Cell>
         </Link>
       </Section>
-      <Section
-        header='Application Launch Data'
-        footer='These pages help developer to learn more about current launch information'
-      >
-        <Link href='/init-data'>
-          <Cell subtitle='User data, chat information, technical data'>Init Data</Cell>
-        </Link>
-        <Link href='/launch-params'>
-          <Cell subtitle='Platform identifier, Mini Apps version, etc.'>Launch Parameters</Cell>
-        </Link>
-        <Link href='/theme-params'>
-          <Cell subtitle='Telegram application palette information'>Theme Parameters</Cell>
-        </Link>
-      </Section>
+   
     </List>
   );
 }
