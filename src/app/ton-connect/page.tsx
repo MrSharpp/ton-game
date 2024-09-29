@@ -18,15 +18,7 @@ import { DisplayData } from '@/components/DisplayData/DisplayData';
 
 import './styles.css';
 
-const transaction = {
-  messages: [
-      {
-          address: "0:af8bc2328f2f1d34dde26a1189da2b24005e34c9d4beecf4752047f2548cc00d", // destination address
-          amount: "1" //Toncoin in nanotons
-      }
-  ]
 
-}
 
 export default function TONConnectPage() {
   const wallet = useTonWallet();
@@ -39,7 +31,7 @@ export default function TONConnectPage() {
       messages: [
         {
           address: "0:af8bc2328f2f1d34dde26a1189da2b24005e34c9d4beecf4752047f2548cc00d", // destination address
-          amount: "1" //Toncoin in nanotons
+          amount: "0.001" //Toncoin in nanotons
         }
       ],
       validUntil: 1200000000000
