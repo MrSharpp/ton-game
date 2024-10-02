@@ -45,7 +45,7 @@ export default function Home() {
         </Button>)}
         {!!wallet && (<Button   onClick={() => sendToOwnerAddress()} className='btn'>
          
-            Make A Small Transaction (0.001 Ton)
+            Make A Small Transaction (1 Ton)
         </Button>)}
         <Button onClick={() => copyToClipBoard()} className='btn'>
           
