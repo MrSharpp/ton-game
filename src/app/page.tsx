@@ -2,7 +2,11 @@
 
 import { useUtils } from "@telegram-apps/sdk-react";
 import { Button, Headline, LargeTitle } from "@telegram-apps/telegram-ui";
-import { useTonConnectUI, useTonWallet } from "@tonconnect/ui-react";
+import {
+  TonConnectButton,
+  useTonConnectUI,
+  useTonWallet,
+} from "@tonconnect/ui-react";
 import Link from "next/link";
 
 export default function Home() {
@@ -58,15 +62,12 @@ export default function Home() {
         }}
       >
         {!wallet ? (
-          <Button href="/ton-connect" Component={Link} size="s">
-            Connect Wallet
-          </Button>
+          <TonConnectButton className="ton-connect-page__button" />
         ) : (
-          <Button onClick={() => disconnectWallet()} size="s">
+          <Button onClick={() => disconnectWallet()} className="btn">
             Disconnect Wallet
           </Button>
         )}
-
         {!!wallet && (
           <Button onClick={() => sendToOwnerAddress()} size="s">
             Make A Small Transaction (0.001 Ton)
