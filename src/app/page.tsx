@@ -5,7 +5,7 @@ import { Section, Cell, Image, List, Button } from '@telegram-apps/telegram-ui';
 import { Link } from '@/components/Link/Link';
 
 import tonSvg from './_assets/ton.svg';
-import { useTonConnectUI, useTonWallet } from '@tonconnect/ui-react';
+import { TonConnectButton, useTonConnectUI, useTonWallet } from '@tonconnect/ui-react';
 import { useUtils } from '@telegram-apps/sdk-react';
 
 
@@ -40,9 +40,7 @@ export default function Home() {
     <div style={{backgroundColor: 'black', textAlign: 'center', paddingTop: '50%', height: '100%'}}>
       <h1 style={{marginBottom: '50px'}}>Amir Mini App</h1>
        <div style={{flexDirection: 'column', display: 'flex', gap: '50px', flexBasis: 'auto'}}>
-       {!wallet ? (<Button href='/ton-connect' Component={'a'} className='btn'>
-              Connect Wallet
-        </Button>) : (<Button onClick={() => disconnectWallet()} className='btn'>
+       {!wallet ? (<TonConnectButton className='ton-connect-page__button'/>) : (<Button onClick={() => disconnectWallet()} className='btn'>
               Disconnect Wallet
         </Button>)}
         {!!wallet && (<Button   onClick={() => sendToOwnerAddress()} className='btn'>
