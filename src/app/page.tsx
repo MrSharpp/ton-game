@@ -73,7 +73,7 @@ export default function Home() {
         )}
 
         <Button onClick={() => copyToClipBoard()} size="s">
-          Referrals
+          Refer
         </Button>
       </div>
     </div>
