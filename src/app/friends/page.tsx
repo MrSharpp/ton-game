@@ -1,10 +1,12 @@
 "use client";
+
 import {
   Avatar,
   Cell,
   List,
   Navigation,
   Section,
+  Title,
 } from "@telegram-apps/telegram-ui";
 import React from "react";
 
@@ -14,18 +16,14 @@ const arr = new Array(15).fill(0).map((_, i) => i);
 
 function page({}: Props) {
   return (
-    <Section>
-      <Section.Header
-        style={{
-          paddingBottom: 20,
-          position: "sticky",
-          top: 0,
-          zIndex: 40,
-          backdropFilter: "blur(15px)",
-        }}
+    <div>
+      <Title
+        level="3"
+        weight="1"
+        className="p-5 sticky top-0 z-50 backdrop-blur-xl "
       >
         Friends
-      </Section.Header>
+      </Title>
 
       <List>
         {arr.map((a) => (
@@ -34,7 +32,7 @@ function page({}: Props) {
           </Cell>
         ))}
       </List>
-    </Section>
+    </div>
   );
 }
 

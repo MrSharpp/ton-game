@@ -6,7 +6,6 @@ import { Root } from "@/components/Root/Root";
 import "@telegram-apps/telegram-ui/dist/styles.css";
 import "normalize.css/normalize.css";
 import "./_assets/globals.css";
-import { Tabbar } from "@telegram-apps/telegram-ui";
 import AppTabBar from "@/components/TabBar/AppTabBar";
 
 export const metadata: Metadata = {

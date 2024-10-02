@@ -1,3 +1,14 @@
 body {
   background: var(--tg-theme-secondary-bg-color, white);
 }
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.checkbox input:checked ~ div > svg > path:nth-of-type(1) {
+  fill: #2990ff;
+}
+.checkbox svg {
+  fill: rgb(53, 53, 53);
+}
