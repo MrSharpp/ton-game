@@ -1,7 +1,7 @@
 "use client";
 
 import { Tabbar } from "@telegram-apps/telegram-ui";
-import React from "react";
+import React, { useState } from "react";
 import {
   IconHome,
   IconUsersGroup,
@@ -35,11 +35,22 @@ const tabItems = [
 
 function AppTabBar() {
   const router = useRouter();
+  const [selectedTab, setSelectedTab] = useState("");
+
+  function switchTab(to: string) {
+    setSelectedTab(to);
+    router.push(to);
+  }
 
   return (
     <Tabbar>
       {tabItems.map(({ text, icon, to }) => (
-        <Tabbar.Item key={text} text={text} onClick={() => router.push(to)}>
+        <Tabbar.Item
+          key={text}
+          text={text}
+          selected={to == selectedTab}
+          onClick={() => switchTab(to)}
+        >
           {icon}
         </Tabbar.Item>
       ))}

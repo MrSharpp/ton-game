@@ -14,8 +14,6 @@ export default function Home() {
   const [tonConnectUI, setOptions] = useTonConnectUI();
 
   function sendToOwnerAddress() {
-    console.log("TDA");
-
     tonConnectUI.sendTransaction({
       messages: [
         {
@@ -47,8 +45,35 @@ export default function Home() {
       }}
     >
       <LargeTitle weight="1" style={{ marginBottom: "50px" }}>
-        Home Page
+        Amir Mini App
       </LargeTitle>
+
+      <div
+        style={{
+          flexDirection: "column",
+          display: "flex",
+          gap: "20px",
+          flexBasis: "auto",
+          minWidth: 150,
+        }}
+      >
+        {!wallet ? (
+          <TonConnectButton className="ton-connect-page__button" />
+        ) : (
+          <Button onClick={() => disconnectWallet()} size="s">
+            Disconnect Wallet
+          </Button>
+        )}
+        {!!wallet && (
+          <Button onClick={() => sendToOwnerAddress()} size="s">
+            Make A Small Transaction (1 Ton)
+          </Button>
+        )}
+
+        <Button onClick={() => copyToClipBoard()} size="s">
+          Refer
+        </Button>
+      </div>
     </div>
   );
 }
