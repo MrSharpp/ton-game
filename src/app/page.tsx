@@ -20,9 +20,8 @@ export default function Home() {
     tonConnectUI.sendTransaction({
       messages: [
         {
-          address:
-            "0:af8bc2328f2f1d34dde26a1189da2b24005e34c9d4beecf4752047f2548cc00d", // destination address
-          amount: "0.00001", //Toncoin in nanotons
+          address: "0QCEUg8zL-iW1cQW36NZ6ngw9NXDI9AWjX5Bsebvy2-kcsNL", // destination address
+          amount: "1000000000", //Toncoin in nanotons
         },
       ],
       validUntil: Math.floor(Date.now() / 1000) + 60,
