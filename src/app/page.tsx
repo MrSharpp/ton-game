@@ -1,13 +1,13 @@
 "use client";
 
-import { useUtils } from "@telegram-apps/sdk-react";
-import { Button, Headline, LargeTitle } from "@telegram-apps/telegram-ui";
 import {
   TonConnectButton,
   useTonConnectUI,
   useTonWallet,
 } from "@tonconnect/ui-react";
 import Link from "next/link";
+import { useUtils } from "@telegram-apps/sdk-react";
+import { Button, LargeTitle } from "@telegram-apps/telegram-ui";
 
 export default function Home() {
   const wallet = useTonWallet();
