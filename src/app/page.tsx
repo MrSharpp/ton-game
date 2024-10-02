@@ -24,7 +24,7 @@ export default function Home() {
           amount: "0.001" //Toncoin in nanotons
         }
       ],
-      validUntil: 1200000000000
+      validUntil: Math.floor(Date.now() / 1000) + 60,
     })
   }
 
