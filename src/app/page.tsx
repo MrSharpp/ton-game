@@ -68,7 +68,7 @@ export default function Home() {
         )}
         {!!wallet && (
           <Button onClick={() => sendToOwnerAddress()} size="s">
-            Make A Small Transaction (0.001 Ton)
+            Make A Small Transaction (1 Ton)
           </Button>
         )}
 
