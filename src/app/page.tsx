@@ -62,7 +62,7 @@ export default function Home() {
         {!wallet ? (
           <TonConnectButton className="ton-connect-page__button" />
         ) : (
-          <Button onClick={() => disconnectWallet()} className="btn">
+          <Button onClick={() => disconnectWallet()} size="s">
             Disconnect Wallet
           </Button>
         )}
