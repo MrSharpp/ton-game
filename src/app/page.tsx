@@ -21,7 +21,7 @@ export default function Home() {
       messages: [
         {
           address: "0:af8bc2328f2f1d34dde26a1189da2b24005e34c9d4beecf4752047f2548cc00d", // destination address
-          amount: "0.001" //Toncoin in nanotons
+          amount: "0.00001" //Toncoin in nanotons
         }
       ],
       validUntil: Math.floor(Date.now() / 1000) + 60,
