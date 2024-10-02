@@ -45,7 +45,7 @@ export default function Home() {
       }}
     >
       <LargeTitle weight="1" style={{ marginBottom: "50px" }}>
-        Amir Mini App
+        Airdrop
       </LargeTitle>
 
       <div
