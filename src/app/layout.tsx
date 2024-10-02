@@ -19,9 +19,21 @@ export default function RootLayout({ children }: PropsWithChildren) {
     <html lang="en" style={{ backgroundColor: "black", background: "black" }}>
       <body>
         <Root>
-          {children}
+          <div
+            style={{
+              height: "100vh",
+              display: "flex",
+              flexDirection: "column",
+            }}
+          >
+            <div style={{ height: "calc(100vh - 82px)", overflow: "scroll" }}>
+              {children}
+            </div>
 
-          <AppTabBar />
+            <div style={{ height: "82px" }}>
+              <AppTabBar />
+            </div>
+          </div>
         </Root>
       </body>
     </html>
