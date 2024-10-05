@@ -10,6 +10,7 @@ export async function POST(request: Request) {
       firstName: body.firstName,
       lastName: body.lastName,
       tgId: body.id,
+      username: body.username,
     },
     update: {},
   });

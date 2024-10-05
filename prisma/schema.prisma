@@ -21,6 +21,7 @@ model User {
   taskStreaks   Int      @default(0)
   friendStreaks Int      @default(0)
   tgId          Int      @unique
+  username      String   @unique
 
   Friends    Friend[] @relation("FriendRelation")
   FriendedBy Friend[] @relation("UserRelation")
