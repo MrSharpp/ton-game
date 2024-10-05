@@ -14,7 +14,33 @@ datasource db {
 }
 
 model User {
-  id        Int    @id @unique @default(autoincrement())
-  firstName String
-  lastName  String
+  Id            Int      @id @unique @default(autoincrement())
+  firstName     String
+  lastName      String
+  taskStartTime DateTime @default(now())
+  taskStreaks   Int      @default(0)
+  friendStreaks Int      @default(0)
+
+  Friends    Friend[] @relation("FriendRelation")
+  FriendedBy Friend[] @relation("UserRelation")
+  Tasks      Task[]
+}
+
+model Friend {
+  User   User @relation("UserRelation", fields: [userId], references: [Id])
+  userId Int
+
+  Friend   User @relation("FriendRelation", fields: [friendId], references: [Id])
+  friendId Int
+
+  @@id([userId, friendId])
+}
+
+model Task {
+  Id Int @id @default(autoincrement())
+
+  User   User @relation(fields: [userId], references: [Id])
+  userId Int
+
+  hourIndex Int
 }

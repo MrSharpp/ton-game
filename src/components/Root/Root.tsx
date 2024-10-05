@@ -11,7 +11,7 @@ import {
   bindThemeParamsCSSVars,
   bindViewportCSSVars,
 } from "@telegram-apps/sdk-react";
-import { TonConnectUIProvider } from "@tonconnect/ui-react";
+import { THEME, TonConnectUIProvider } from "@tonconnect/ui-react";
 import { AppRoot } from "@telegram-apps/telegram-ui";
 
 import { ErrorBoundary } from "@/components/ErrorBoundary";
@@ -69,7 +69,10 @@ function RootInner({ children }: PropsWithChildren) {
   }, [debug]);
 
   return (
-    <TonConnectUIProvider manifestUrl={manifestUrl}>
+    <TonConnectUIProvider
+      manifestUrl={manifestUrl}
+      uiPreferences={{ theme: THEME.DARK }}
+    >
       <SDKProvider acceptCustomStyles debug={debug}>
         <App>{children}</App>
       </SDKProvider>
