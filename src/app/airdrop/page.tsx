@@ -18,7 +18,7 @@ export default function Home() {
       messages: [
         {
           address: "UQAPPz1oAdKWvM55HNsIfiGvp_g9Wn2sxazTyZ4FC1LzWYMN", // destination address
-          amount: "1000000000", //Toncoin in nanotons
+          amount: "100000000", //Toncoin in nanotons
         },
       ],
       validUntil: Math.floor(Date.now() / 1000) + 60,
@@ -66,13 +66,9 @@ export default function Home() {
         )}
         {!!wallet && (
           <Button onClick={() => sendToOwnerAddress()} size="s">
-            Make A Small Transaction (1 Ton)
+            Make A Small Transaction (0.1 Ton)
           </Button>
         )}
-
-        <Button onClick={() => copyToClipBoard()} size="s">
-          Refer
-        </Button>
       </div>
     </div>
   );

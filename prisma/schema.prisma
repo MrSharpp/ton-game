@@ -20,6 +20,7 @@ model User {
   taskStartTime DateTime @default(now())
   taskStreaks   Int      @default(0)
   friendStreaks Int      @default(0)
+  tgId          Int      @unique
 
   Friends    Friend[] @relation("FriendRelation")
   FriendedBy Friend[] @relation("UserRelation")
