@@ -1,3 +1,5 @@
+"use server";
+import { prismaClient } from "@/db/prisma-client";
 import {
   Card,
   Cell,
@@ -11,7 +13,9 @@ type Props = {};
 
 const days = new Array(10).fill(0).map((_, i) => i + 1);
 
-function TaskPage({}: Props) {
+async function TaskPage({}: Props) {
+  const tasks = await prismaClient.task.findMany();
+
   return (
     <Section>
       <Title

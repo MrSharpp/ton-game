@@ -13,6 +13,7 @@
     "@prisma/client": "^5.20.0",
     "@tabler/icons-react": "^3.19.0",
     "@telegram-apps/react-router-integration": "^1.0.0",
+    "@telegram-apps/sdk": "^2.4.0",
     "@telegram-apps/sdk-react": "^1.0.0",
     "@telegram-apps/telegram-ui": "^2.1.5",
     "@tonconnect/ui-react": "^2.0.5",
