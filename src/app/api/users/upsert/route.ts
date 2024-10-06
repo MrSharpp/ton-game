@@ -1,8 +1,9 @@
 import { prismaClient } from "@/db/prisma-client";
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 
-export async function POST(request: Request) {
+export async function POST(request: NextRequest) {
   const body = JSON.parse(await request.text());
+  const referId = request.nextUrl.searchParams.get("referId");
 
   const user = await prismaClient.user.upsert({
     where: { tgId: body.id },
@@ -11,6 +12,15 @@ export async function POST(request: Request) {
       lastName: body.lastName,
       tgId: body.id,
       username: body.username,
+      ...(!!referId && {
+        Friends: {
+          connect: {
+            User: {
+              Id: +referId,
+            },
+          },
+        },
+      }),
     },
     update: {},
   });

@@ -16,13 +16,11 @@ export function UserProvider({ children }: any) {
   const tgUser = useLaunchParams()?.initData?.user;
   const [user, setUser] = useState<null | User>(null);
 
-  const launchParams = useLaunchParams().startParam;
-
-  console.log(launchParams);
+  const startParam = useLaunchParams().startParam;
 
   useEffect(() => {
     if (tgUser?.id && !user?.Id)
-      fetch(`/api/users/upsert`, {
+      fetch(`/api/users/upsert?referId=${startParam}`, {
         method: "POST",
         body: JSON.stringify(tgUser),
       }).then(async (res) => {
