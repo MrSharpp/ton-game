@@ -17,6 +17,7 @@ import timezone from "dayjs/plugin/timezone";
 
 dayjs.extend(utc);
 dayjs.extend(timezone);
+const DEBUG = false;
 
 type Task = { toComplete: boolean; Id: number };
 const tz = dayjs.tz.guess();
@@ -77,11 +78,14 @@ function TaskPage() {
       index + 1,
       "hours"
     );
-    console.log(`-------------------${index}--------------------`);
-    debugDayjs(dayjs(user?.taskStartTime), "userStartTime");
-    debugDayjs(currentTaskStartTime, "lastTaskEndTime");
-    debugDayjs(currentTime, "currentTime");
-    debugDayjs(currentTaskEndtime, "currentTaskEndtime");
+
+    if (DEBUG) {
+      console.log(`-------------------${index}--------------------`);
+      debugDayjs(dayjs(user?.taskStartTime), "userStartTime");
+      debugDayjs(currentTaskStartTime, "lastTaskEndTime");
+      debugDayjs(currentTime, "currentTime");
+      debugDayjs(currentTaskEndtime, "currentTaskEndtime");
+    }
 
     if (
       currentTime.isAfter(currentTaskStartTime) &&
@@ -116,6 +120,13 @@ function TaskPage() {
                   onChange={async (e) => {
                     e.target.disabled = true;
                     taskMutation.mutate(index + 1);
+
+                    if (index + 1 == userTasksQuery.data?.length) {
+                      const allTasksFinished = userTasksQuery.data.every(
+                        (item) => !item.toComplete
+                      );
+                      console.log(allTasksFinished);
+                    }
                   }}
                   defaultChecked={!item.toComplete}
                   disabled={!shouldTaskBeEnabled(item, index)}
