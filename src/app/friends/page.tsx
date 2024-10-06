@@ -1,5 +1,6 @@
 "use client";
 
+import { useUtils } from "@telegram-apps/sdk-react";
 import {
   Avatar,
   Cell,
@@ -14,7 +15,13 @@ type Props = {};
 
 const arr = new Array(15).fill(0).map((_, i) => i);
 
-function page({}: Props) {
+export default function Page({}: Props) {
+  const utils = useUtils();
+
+  function copyToClipBoard() {
+    utils.openLink("https://t.me/share/url?url=https://t.me/shahzar_2024_bot");
+  }
+
   return (
     <div>
       <Title
@@ -35,5 +42,3 @@ function page({}: Props) {
     </div>
   );
 }
-
-export default page;

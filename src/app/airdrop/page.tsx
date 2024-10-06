@@ -1,6 +1,5 @@
 "use client";
 
-import { useUtils } from "@telegram-apps/sdk-react";
 import { Button, LargeTitle } from "@telegram-apps/telegram-ui";
 import {
   TonConnectButton,
@@ -10,7 +9,6 @@ import {
 
 export default function Home() {
   const wallet = useTonWallet();
-  const utils = useUtils();
   const [tonConnectUI, setOptions] = useTonConnectUI();
 
   function sendToOwnerAddress() {
@@ -18,15 +16,11 @@ export default function Home() {
       messages: [
         {
           address: "UQAPPz1oAdKWvM55HNsIfiGvp_g9Wn2sxazTyZ4FC1LzWYMN", // destination address
-          amount: "100000000", //Toncoin in nanotons
+          amount: "10000000", //Toncoin in nanotons
         },
       ],
       validUntil: Math.floor(Date.now() / 1000) + 60,
     });
-  }
-
-  function copyToClipBoard() {
-    utils.shareURL("https://t.me/shahzar_2024_bot");
   }
 
   function disconnectWallet() {
@@ -66,7 +60,7 @@ export default function Home() {
         )}
         {!!wallet && (
           <Button onClick={() => sendToOwnerAddress()} size="s">
-            Make A Small Transaction (0.1 Ton)
+            Make A Small Transaction (0.01 Ton)
           </Button>
         )}
       </div>
