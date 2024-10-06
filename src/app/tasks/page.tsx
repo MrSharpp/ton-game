@@ -31,23 +31,6 @@ function TaskPage() {
   const userID = useLaunchParams().initData?.user?.id;
   const user = useUser();
 
-  useEffect(() => {
-    if (!user) return;
-    const taskDeadline = dayjs(user?.taskStartTime).add(7, "hours");
-
-    const currentTime = dayjs();
-
-    // if 7hours already passed since taskStartTime
-    if (currentTime.isAfter(taskDeadline)) {
-      // request to change the taskSTart time to now
-      fetch(`/api/tasks/reset`, {
-        body: JSON.stringify({ userId: user?.Id }),
-        method: "POST",
-      });
-      userTasksQuery.refetch();
-    }
-  }, [user?.Id, user?.taskStartTime]);
-
   const userTasksQuery = useQuery({
     queryFn: () => fetch(`/api/tasks/${userID}`).then((res) => res.json()),
     queryKey: ["tasks", userID],
@@ -60,6 +43,12 @@ function TaskPage() {
     },
   });
 
+  const completedAllTasks = userTasksQuery?.data?.every(
+    (item) => !item.toComplete
+  );
+
+  console.log("all task completed:", completedAllTasks);
+
   const taskMutation = useMutation({
     mutationFn: (hour: number) =>
       fetch(`/api/tasks/complete`, {
@@ -67,6 +56,31 @@ function TaskPage() {
         method: "POST",
       }),
   });
+
+  useEffect(() => {
+    if (!user || userTasksQuery.isLoading || userTasksQuery.isFetching) return;
+    const taskDeadline = dayjs(user?.taskStartTime).add(7, "hours");
+
+    const currentTime = dayjs();
+
+    // if 7hours already passed since taskStartTime
+    if (currentTime.isAfter(taskDeadline)) {
+      // request to change the taskSTart time to now
+      fetch(`/api/tasks/reset`, {
+        body: JSON.stringify({
+          userId: user?.Id,
+          completedAll: completedAllTasks,
+        }),
+        method: "POST",
+      }).then(() => userTasksQuery.refetch());
+    }
+  }, [
+    user,
+    user?.Id,
+    user?.taskStartTime,
+    userTasksQuery.isLoading,
+    userTasksQuery.isFetching,
+  ]);
 
   function shouldTaskBeEnabled(task: Task, index: number) {
     if (!task.toComplete) return false;
@@ -122,10 +136,7 @@ function TaskPage() {
                     taskMutation.mutate(index + 1);
 
                     if (index + 1 == userTasksQuery.data?.length) {
-                      const allTasksFinished = userTasksQuery.data.every(
-                        (item) => !item.toComplete
-                      );
-                      console.log(allTasksFinished);
+                      console.log(completedAllTasks);
                     }
                   }}
                   defaultChecked={!item.toComplete}
