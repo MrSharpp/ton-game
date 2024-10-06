@@ -5,6 +5,7 @@ import { initData } from "@telegram-apps/sdk";
 import { useLaunchParams } from "@telegram-apps/sdk-react";
 import { LargeTitle } from "@telegram-apps/telegram-ui";
 import { useEffect, useState } from "react";
+import "./styles.css";
 
 export default function Home() {
   return (
@@ -16,6 +17,11 @@ export default function Home() {
         justifyContent: "center",
         flexDirection: "column",
         alignItems: "center",
+        backgroundImage: "url('/bg.jpg')",
+        backgroundRepeat: "no-repeat",
+        backgroundSize: "cover",
+        backgroundAttachment: "fixed",
+        position: "relative",
       }}
     >
       <LargeTitle
