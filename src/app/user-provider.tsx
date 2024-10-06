@@ -1,5 +1,6 @@
 import { useLaunchParams } from "@telegram-apps/sdk-react";
 import React, { useContext, useEffect, useState } from "react";
+import { SplashScreen } from "./splash-screen";
 
 type User = {
   Id: number;
@@ -16,6 +17,7 @@ export const UserContextProvider = UserContext.Provider;
 
 export function UserProvider({ children }: any) {
   const [loading, setLoading] = useState(true);
+  const [splashScreenVisible, setSplahScreenVisible] = useState(true);
   const tgUser = useLaunchParams()?.initData?.user;
   const [user, setUser] = useState<User>();
 
@@ -38,7 +40,14 @@ export function UserProvider({ children }: any) {
     }
   }, []);
 
-  if (loading) return "Loading...";
+  useEffect(() => {
+    setTimeout(() => {
+      setSplahScreenVisible(false);
+    }, 3_000);
+  }, []);
+
+  if (loading || splashScreenVisible)
+    return <SplashScreen path={"/splash.mp4"} />;
 
   return (
     <UserContextProvider value={{ user: user, fetchUser }}>
