@@ -9,6 +9,8 @@ import {
   Checkbox,
   Section,
   Title,
+  Text,
+  Caption,
 } from "@telegram-apps/telegram-ui";
 import dayjs, { Dayjs } from "dayjs";
 import React, { useEffect, useState } from "react";
@@ -156,6 +158,12 @@ function TaskPage() {
           </div>
         ))}
       </div>
+
+      <Section.Footer>
+        <Caption level="1" weight="2">
+          Streaks: {user?.taskStreaks}
+        </Caption>
+      </Section.Footer>
     </Section>
   );
 }
