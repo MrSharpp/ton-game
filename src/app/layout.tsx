@@ -31,7 +31,14 @@ export default function RootLayout({ children }: PropsWithChildren) {
                 }}
               >
                 <div
-                  style={{ height: "calc(100vh - 82px)", overflow: "scroll" }}
+                  style={{
+                    height: "calc(100vh - 82px)",
+                    backgroundImage: "url('/bg.jpg')",
+                    backgroundRepeat: "no-repeat",
+                    backgroundSize: "cover",
+                    backgroundAttachment: "fixed",
+                    position: "relative",
+                  }}
                 >
                   {children}
                 </div>

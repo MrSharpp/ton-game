@@ -18,8 +18,12 @@ export default function Home() {
         alignItems: "center",
       }}
     >
-      <LargeTitle weight="1" style={{ marginBottom: "50px" }}>
-        Home Page
+      <LargeTitle
+        weight="1"
+        style={{ marginBottom: "50px", color: "white" }}
+        color="white"
+      >
+        AiBulls.io
       </LargeTitle>
     </div>
   );
