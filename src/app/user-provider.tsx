@@ -14,10 +14,10 @@ export const UserContextProvider = UserContext.Provider;
 export function UserProvider({ children }: any) {
   const [loading, setLoading] = useState(true);
   const tgUser = useLaunchParams()?.initData?.user;
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState<null | User>(null);
 
   useEffect(() => {
-    if (tgUser?.id)
+    if (tgUser?.id && !user?.Id)
       fetch(`/api/users/upsert`, {
         method: "POST",
         body: JSON.stringify(tgUser),
