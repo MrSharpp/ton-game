@@ -10,7 +10,7 @@ import {
   Section,
   Title,
 } from "@telegram-apps/telegram-ui";
-import dayjs from "dayjs";
+import dayjs, { Dayjs } from "dayjs";
 import React, { useEffect, useState } from "react";
 import utc from "dayjs/plugin/utc";
 import timezone from "dayjs/plugin/timezone";
@@ -19,9 +19,12 @@ dayjs.extend(utc);
 dayjs.extend(timezone);
 
 type Task = { toComplete: boolean; Id: number };
-
 const tz = dayjs.tz.guess();
-const format = "DD/MM - hh/mm";
+
+function debugDayjs(day: Dayjs, text?: string) {
+  const format = "DD/MM - hh/mm";
+  console.log(text, day.tz(tz).format(format));
+}
 
 function TaskPage() {
   const userID = useLaunchParams().initData?.user?.id;
@@ -67,12 +70,23 @@ function TaskPage() {
   function shouldTaskBeEnabled(task: Task, index: number) {
     if (!task.toComplete) return false;
 
-    const currentTime = dayjs();
+    const currentTime = dayjs().tz(tz);
 
-    const taskStartTime = dayjs(user?.taskStartTime).add(index, "hours");
-    const taskEndTime = dayjs(user?.taskStartTime).add(index + 1, "hours");
+    const currentTaskStartTime = dayjs(user?.taskStartTime).add(index, "hours");
+    const currentTaskEndtime = dayjs(user?.taskStartTime).add(
+      index + 1,
+      "hours"
+    );
+    console.log(`-------------------${index}--------------------`);
+    debugDayjs(dayjs(user?.taskStartTime), "userStartTime");
+    debugDayjs(currentTaskStartTime, "lastTaskEndTime");
+    debugDayjs(currentTime, "currentTime");
+    debugDayjs(currentTaskEndtime, "currentTaskEndtime");
 
-    if (currentTime.isAfter(taskStartTime) && currentTime.isBefore(taskEndTime))
+    if (
+      currentTime.isAfter(currentTaskStartTime) &&
+      currentTime.isBefore(currentTaskEndtime)
+    )
       return true;
 
     return false;
@@ -103,7 +117,6 @@ function TaskPage() {
                     e.target.disabled = true;
                     taskMutation.mutate(index + 1);
                   }}
-                  checked={!item.toComplete}
                   disabled={!shouldTaskBeEnabled(item, index)}
                 />
               }
