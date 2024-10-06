@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "tunnel": "ngrok http 3000 --url eager-rat-separately.ngrok-free.app",
     "dev:https": "next dev --experimental-https",
     "build": "next build",
     "start": "next start",

@@ -33,6 +33,7 @@ export default function Page({}: Props) {
       fetch(`/api/friends/${user?.Id}`).then(async (res) =>
         JSON.parse(await res.text())
       ),
+    placeholderData: [],
   });
 
   console.log(friendsQuery.data);
@@ -55,9 +56,12 @@ export default function Page({}: Props) {
       </Title>
 
       <List>
-        {arr.map((a) => (
-          <Cell key={a} before={<Avatar />} after={<Navigation />}>
-            Friend {a}
+        {friendsQuery.data.map((item) => (
+          <Cell
+            key={item.Id}
+            after={<div>Task Streaks: {item.Friend.taskStreaks}</div>}
+          >
+            {item.Friend.firstName} {item.Friend.lastName}
           </Cell>
         ))}
       </List>

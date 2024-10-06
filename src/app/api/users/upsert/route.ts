@@ -5,25 +5,27 @@ export async function POST(request: NextRequest) {
   const body = JSON.parse(await request.text());
   const referId = request.nextUrl.searchParams.get("referId");
 
-  const user = await prismaClient.user.upsert({
-    where: { tgId: body.id },
-    create: {
+  let user = await prismaClient.user.findFirst({ where: { tgId: body.id } });
+
+  if (!!user) return NextResponse.json(user, { status: 200 });
+
+  user = await prismaClient.user.create({
+    data: {
       firstName: body.firstName,
       lastName: body.lastName,
       tgId: body.id,
       username: body.username,
-      ...(!!referId && {
-        Friends: {
-          connect: {
-            User: {
-              Id: +referId,
-            },
-          },
-        },
-      }),
     },
-    update: {},
   });
+
+  if (!!referId && !isNaN(+referId)) {
+    await prismaClient.friend.create({
+      data: {
+        Friend: { connect: { Id: +referId } },
+        User: { connect: { Id: user.Id } },
+      },
+    });
+  }
 
   return NextResponse.json(user, { status: 201 });
 }
