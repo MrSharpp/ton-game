@@ -24,7 +24,7 @@ export default function Page({}: Props) {
   const user = useUser();
 
   function referFriend() {
-    utils.shareURL(`https://t.me/${BOT_USERNAME}?startapp=${user?.Id}}`);
+    utils.shareURL(`https://t.me/${BOT_USERNAME}?startapp=${user?.Id}`);
   }
 
   const friendsQuery = useQuery({
@@ -56,7 +56,7 @@ export default function Page({}: Props) {
       </Title>
 
       <List>
-        {friendsQuery.data.map((item) => (
+        {(friendsQuery.data || []).map((item) => (
           <Cell
             key={item.Id}
             after={<div>Task Streaks: {item.Friend.taskStreaks}</div>}
