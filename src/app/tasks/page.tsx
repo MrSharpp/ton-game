@@ -46,7 +46,7 @@ function TaskPage() {
 
   const userTasksQuery = useQuery({
     queryFn: () => fetch(`/api/tasks/${userID}`).then((res) => res.json()),
-    queryKey: [],
+    queryKey: ["tasks", userID],
     placeholderData: [],
     select(data) {
       let items = new Array(7)
