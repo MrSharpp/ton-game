@@ -117,6 +117,7 @@ function TaskPage() {
                     e.target.disabled = true;
                     taskMutation.mutate(index + 1);
                   }}
+                  defaultChecked={!item.toComplete}
                   disabled={!shouldTaskBeEnabled(item, index)}
                 />
               }
