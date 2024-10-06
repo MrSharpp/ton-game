@@ -13,7 +13,7 @@ import {
   Title,
 } from "@telegram-apps/telegram-ui";
 import React from "react";
-import { BOT_USERNAME } from "../constants";
+import { BOT_USERNAME, SHARE_MESSAGE } from "../constants";
 
 type Props = {};
 
@@ -24,8 +24,12 @@ export default function Page({}: Props) {
   const user = useUser();
 
   function referFriend() {
+    const toShareURL = encodeURIComponent(
+      `https://t.me/${BOT_USERNAME}?ref=${user?.Id}`
+    );
+
     utils.openTelegramLink(
-      `https://t.me/share/url?url=https://t.me/${BOT_USERNAME}&text=${SHARE_MESSAGE}`
+      `https://t.me/share/url?url=${toShareURL.toString()}&text=${SHARE_MESSAGE}`
     );
   }
 
