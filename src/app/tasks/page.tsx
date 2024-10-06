@@ -14,6 +14,7 @@ import dayjs, { Dayjs } from "dayjs";
 import React, { useEffect, useState } from "react";
 import utc from "dayjs/plugin/utc";
 import timezone from "dayjs/plugin/timezone";
+import { COUNT_OF_TASKS } from "../constants";
 
 dayjs.extend(utc);
 dayjs.extend(timezone);
@@ -36,7 +37,7 @@ function TaskPage() {
     queryKey: ["tasks", userID],
     placeholderData: [],
     select(data) {
-      let items = new Array(7)
+      let items = new Array(COUNT_OF_TASKS)
         .fill({ toComplete: true })
         .map((item, index) => data[index] || item);
       return items;
@@ -59,7 +60,10 @@ function TaskPage() {
 
   useEffect(() => {
     if (!user || userTasksQuery.isLoading || userTasksQuery.isFetching) return;
-    const taskDeadline = dayjs(user?.taskStartTime).add(7, "hours");
+    const taskDeadline = dayjs(user?.taskStartTime).add(
+      COUNT_OF_TASKS,
+      "hours"
+    );
 
     const currentTime = dayjs();
 
