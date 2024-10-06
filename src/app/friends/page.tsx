@@ -23,6 +23,8 @@ export default function Page({}: Props) {
   const utils = useUtils();
   const user = useUser();
 
+  console.log(user);
+
   function referFriend() {
     utils.shareURL(`https://t.me/${BOT_USERNAME}?startapp=${user?.Id}`);
   }
