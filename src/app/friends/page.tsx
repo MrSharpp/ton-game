@@ -24,9 +24,9 @@ export default function Page({}: Props) {
   const user = useUser();
 
   function referFriend() {
-    utils.openTelegramLink(`https://t.me/share/url?url=https://t.me/${BOT_USERNAME}&text=%0A•A Distinguished Committed Airdrop in the history of TG mini apps💰
-%0A•Boost your allocation with time streak tasks & frens streak Tasks.💸
-%0A•Take a Stride and Join us to uplift your crypto Journey.`);
+    utils.openTelegramLink(
+      `https://t.me/share/url?url=https://t.me/${BOT_USERNAME}&text=${SHARE_MESSAGE}`
+    );
   }
 
   const friendsQuery = useQuery({
