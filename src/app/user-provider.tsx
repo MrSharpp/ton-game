@@ -2,7 +2,7 @@ import { useLaunchParams } from "@telegram-apps/sdk-react";
 import React, { useContext, useEffect, useState } from "react";
 
 type User = {
-  id: number;
+  Id: number;
   taskStreaks: number;
   taskStartTime: Date;
   friendStreaks: number;
