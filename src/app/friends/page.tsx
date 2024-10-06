@@ -2,7 +2,7 @@
 
 import { useUser } from "@/hooks/useUser";
 import { useQuery } from "@tanstack/react-query";
-import { useUtils } from "@telegram-apps/sdk-react";
+import { useLaunchParams, useUtils } from "@telegram-apps/sdk-react";
 import {
   Avatar,
   Button,
@@ -24,13 +24,7 @@ export default function Page({}: Props) {
   const user = useUser();
 
   function referFriend() {
-    const toShareURL = encodeURIComponent(
-      `https://t.me/${BOT_USERNAME}?ref=${user?.Id}`
-    );
-
-    utils.openTelegramLink(
-      `https://t.me/share/url?url=${toShareURL.toString()}&text=${SHARE_MESSAGE}`
-    );
+    utils.shareURL(`https://t.me/${BOT_USERNAME}?startapp=${user?.Id}}`);
   }
 
   const friendsQuery = useQuery({
