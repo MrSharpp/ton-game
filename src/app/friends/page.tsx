@@ -12,7 +12,7 @@ import {
   Section,
   Title,
 } from "@telegram-apps/telegram-ui";
-import React from "react";
+import React, { use } from "react";
 import { BOT_USERNAME, SHARE_MESSAGE } from "../constants";
 
 type Props = {};
@@ -26,8 +26,11 @@ export default function Page({}: Props) {
   console.log(user);
 
   function referFriend() {
+    const encodedUrl = encodeURIComponent(
+      `https://t.me/${BOT_USERNAME}/startapp=${user?.Id || ""}`
+    );
     utils.openTelegramLink(
-      `https://t.me/share/url?url=https://t.me/catizenbot/gameapp`
+      `https://t.me/share/url?url=${encodedUrl.toString()}`
     );
   }
 
