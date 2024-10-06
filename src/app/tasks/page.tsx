@@ -1,5 +1,8 @@
-"use server";
+"use client";
 import { prismaClient } from "@/db/prisma-client";
+import { useUser } from "@/hooks/useUser";
+import { useQuery } from "@tanstack/react-query";
+import { useLaunchParams } from "@telegram-apps/sdk-react";
 import {
   Card,
   Cell,
@@ -7,14 +10,28 @@ import {
   Section,
   Title,
 } from "@telegram-apps/telegram-ui";
-import React from "react";
+import React, { useEffect, useState } from "react";
 
-type Props = {};
+type Task = { hour: number; done: boolean };
 
-const days = new Array(10).fill(0).map((_, i) => i + 1);
+function TaskPage() {
+  const userID = useLaunchParams().initData?.user?.id;
+  const user = useUser();
 
-async function TaskPage({}: Props) {
-  const tasks = await prismaClient.task.findMany();
+  const userTasksQuery = useQuery({
+    queryFn: () => fetch(`/api/tasks/${userID}`).then((res) => res.json()),
+    queryKey: [],
+    placeholderData: [],
+    select(data) {
+      if (!data.length)
+        return new Array(7).fill(1).map((it, index) => ({
+          hour: index + 1,
+          done: false,
+        }));
+    },
+  });
+
+  if (userTasksQuery.isLoading) return "Loading....";
 
   return (
     <Section>
@@ -27,16 +44,21 @@ async function TaskPage({}: Props) {
       </Title>
 
       <div className="grid grid-cols-2 px-8 pb-8">
-        {days.map((day) => (
-          <div key={day} className="p-2">
+        {(userTasksQuery.data || []).map((item: Task) => (
+          <div key={item.hour} className="p-2">
             <Cell
               Component={"label"}
               before={
-                <Checkbox name="check" className="checkbox" value={day} />
+                <Checkbox
+                  name="check"
+                  className="checkbox"
+                  onClick={() => {}}
+                  value={+item.done}
+                />
               }
               className="rounded-md border border-green-600"
             >
-              Day #{day}
+              Hour #{item.hour}
             </Cell>
           </div>
         ))}
