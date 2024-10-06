@@ -26,7 +26,7 @@ export default function Page({}: Props) {
   console.log(user);
 
   function referFriend() {
-    utils.shareURL(`https://t.me/${BOT_USERNAME}?startapp=${user?.Id}`);
+    utils.openTelegramLink(`https://t.me/${BOT_USERNAME}?startapp=${user?.Id}`);
   }
 
   const friendsQuery = useQuery({
