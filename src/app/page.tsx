@@ -7,11 +7,6 @@ import { LargeTitle } from "@telegram-apps/telegram-ui";
 import { useEffect, useState } from "react";
 
 export default function Home() {
-  const user = useLaunchParams().initData?.user;
-  // const { loading } = useUser(user?.id || 0);
-
-  // if (loading) return "Loading...";
-
   return (
     <div
       style={{

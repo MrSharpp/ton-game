@@ -21,12 +21,14 @@ const arr = new Array(15).fill(0).map((_, i) => i);
 
 export default function Page({}: Props) {
   const utils = useUtils();
-  const user = useUser();
+  const { user } = useUser();
 
   console.log(user);
 
   function referFriend() {
-    utils.openTelegramLink(`https://t.me/${BOT_USERNAME}?startapp=${user?.Id}`);
+    utils.openTelegramLink(
+      `https://t.me/share/url?url=https://t.me/catizenbot/gameapp`
+    );
   }
 
   const friendsQuery = useQuery({

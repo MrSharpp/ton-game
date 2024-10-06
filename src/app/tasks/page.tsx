@@ -30,7 +30,7 @@ function debugDayjs(day: Dayjs, text?: string) {
 
 function TaskPage() {
   const userID = useLaunchParams().initData?.user?.id;
-  const user = useUser();
+  const { user, fetchUser } = useUser();
 
   const userTasksQuery = useQuery({
     queryFn: () => fetch(`/api/tasks/${userID}`).then((res) => res.json()),
@@ -76,7 +76,10 @@ function TaskPage() {
           completedAll: completedAllTasks,
         }),
         method: "POST",
-      }).then(() => userTasksQuery.refetch());
+      }).then(async () => {
+        await fetchUser();
+        userTasksQuery.refetch();
+      });
     }
   }, [
     user,
