@@ -128,7 +128,6 @@ function TaskPage() {
       >
         Tasks
       </Title>
-
       <div className="grid grid-cols-2 px-8 pb-8">
         {(userTasksQuery.data || []).map((item: Task, index) => (
           <div key={item.Id} className="p-2">
