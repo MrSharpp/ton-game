@@ -1,7 +1,7 @@
 "use client";
 
 import { useUser } from "@/hooks/useUser";
-import { Button, LargeTitle } from "@telegram-apps/telegram-ui";
+import { Button, LargeTitle, Subheadline } from "@telegram-apps/telegram-ui";
 import {
   TonConnectButton,
   useTonConnectUI,
@@ -50,9 +50,11 @@ export default function Home() {
         alignItems: "center",
       }}
     >
-      <h1 className="text-3xl font-bold" style={{ marginBottom: "50px" }}>
-        Airdrop
-      </h1>
+      <div className="mb-5">
+        <h1 className="text-3xl font-bold">Airdrop</h1>
+
+        <Subheadline>Task for eligible iin airdrop:</Subheadline>
+      </div>
 
       <div
         style={{
