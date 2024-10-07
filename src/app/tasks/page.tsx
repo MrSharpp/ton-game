@@ -6,6 +6,7 @@ import {
   Caption,
   Cell,
   Checkbox,
+  LargeTitle,
   Subheadline,
   Title,
 } from "@telegram-apps/telegram-ui";
@@ -92,12 +93,12 @@ function TaskPage() {
   }
 
   return (
-    <div className="h-full relative">
+    <div className="h-full relative px-5">
       <h1 className="p-5 sticky top-0 z-50 backdrop-blur-lg font-bold text-xl">
         Tasks
       </h1>
 
-      <div className="grid grid-cols-2 px-5 pb-8 gap-2 ">
+      <div className="grid grid-cols-2  pb-8 gap-2 ">
         {tasks.map((item: Task, index) => (
           <div key={item.Id}>
             <Cell
@@ -126,18 +127,13 @@ function TaskPage() {
           </div>
         ))}
       </div>
+      <Title weight="3">Time streak Task: 0</Title>
 
-      <Subheadline level="1" weight="3">
-        Time streak Task: 0
-      </Subheadline>
-
-      <Subheadline level="1" weight="3">
-        Fren streak Task: 0
-      </Subheadline>
+      <Title weight="3">Fren streak Task: 0</Title>
 
       <div className="mt-10">
         <Subheadline level="1" weight="3">
-          Social Tasks
+          {"->"} Social Tasks
         </Subheadline>
 
         <div className="flex flex-col">
@@ -163,12 +159,6 @@ function TaskPage() {
             Telegram
           </Caption>
         </div>
-      </div>
-
-      <div className=" absolute bottom-4 left-5">
-        <Caption level="1" weight="2" className="text-blue-300">
-          Streaks: {streaks}
-        </Caption>
       </div>
     </div>
   );
