@@ -80,7 +80,7 @@ function TaskPage() {
   }
 
   return (
-    <Section>
+    <div className="h-full relative">
       <Title
         className="p-5 sticky top-0 z-50 backdrop-blur-lg"
         level="3"
@@ -89,9 +89,9 @@ function TaskPage() {
         Tasks
       </Title>
 
-      <div className="grid grid-cols-2 px-8 pb-8">
+      <div className="grid grid-cols-2 px-5 pb-8 gap-2 ">
         {(userTasksQuery.data || []).map((item: Task, index) => (
-          <div key={item.Id} className="p-2">
+          <div key={item.Id}>
             <Cell
               Component={"label"}
               before={
@@ -119,12 +119,12 @@ function TaskPage() {
         ))}
       </div>
 
-      <Section.Footer>
-        <Caption level="1" weight="2">
+      <div className=" absolute bottom-4 left-5">
+        <Caption level="1" weight="2" className="text-blue-300">
           Streaks: {streaks}
         </Caption>
-      </Section.Footer>
-    </Section>
+      </div>
+    </div>
   );
 }
 
