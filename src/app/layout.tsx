@@ -8,6 +8,7 @@ import { UserProvider } from "./user-provider";
 import "@telegram-apps/telegram-ui/dist/styles.css";
 import "normalize.css/normalize.css";
 import "./_assets/globals.css";
+import "./styles.css";
 
 const queryClient = new QueryClient();
 

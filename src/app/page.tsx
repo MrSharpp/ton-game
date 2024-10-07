@@ -1,18 +1,11 @@
 "use client";
 
-import { useUser } from "@/hooks/useUser";
-import { initData } from "@telegram-apps/sdk";
-import { useLaunchParams } from "@telegram-apps/sdk-react";
-import { LargeTitle } from "@telegram-apps/telegram-ui";
-import { useEffect, useState } from "react";
-import "./styles.css";
-
 export default function Home() {
   return (
     <div
       style={{
         textAlign: "center",
-        height: "100vh",
+        height: "100%",
         display: "flex",
         justifyContent: "center",
         flexDirection: "column",
@@ -24,7 +17,7 @@ export default function Home() {
         position: "relative",
       }}
     >
-      <img src="/banner.png" />
+      <img src="/banner.png" alt="TON Connect" width={300} height={300} />
     </div>
   );
 }

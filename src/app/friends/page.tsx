@@ -35,7 +35,7 @@ export default function Page() {
       <Title
         level="3"
         weight="1"
-        className="p-5 sticky top-0 z-50 backdrop-blur-xl "
+        className="p-5 sticky top-0 z-50 backdrop-blur-lg"
       >
         Friends
         <Button

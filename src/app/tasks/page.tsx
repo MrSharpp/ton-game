@@ -82,7 +82,7 @@ function TaskPage() {
   return (
     <Section>
       <Title
-        className="p-5 sticky top-0 z-50 backdrop-blur-xl "
+        className="p-5 sticky top-0 z-50 backdrop-blur-lg"
         level="3"
         weight="1"
       >
