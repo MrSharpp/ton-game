@@ -1,8 +1,14 @@
 "use client";
 import { useUser } from "@/hooks/useUser";
 import { useMutation, useQuery } from "@tanstack/react-query";
-import { useLaunchParams } from "@telegram-apps/sdk-react";
-import { Caption, Cell, Checkbox, Title } from "@telegram-apps/telegram-ui";
+import { useLaunchParams, useUtils } from "@telegram-apps/sdk-react";
+import {
+  Caption,
+  Cell,
+  Checkbox,
+  Subheadline,
+  Title,
+} from "@telegram-apps/telegram-ui";
 import dayjs, { Dayjs } from "dayjs";
 import timezone from "dayjs/plugin/timezone";
 import utc from "dayjs/plugin/utc";
@@ -24,6 +30,7 @@ function TaskPage() {
   const userID = useLaunchParams().initData?.user?.id;
   const { user, fetchUser } = useUser();
   const [streaks, setStreaks] = useState(user?.taskStreaks ?? 0);
+  const util = useUtils();
 
   const userTasksQuery = useQuery({
     queryFn: () => fetch(`/api/tasks/${userID}`).then((res) => res.json()),
@@ -107,6 +114,44 @@ function TaskPage() {
             </Cell>
           </div>
         ))}
+      </div>
+
+      <Subheadline level="1" weight="3">
+        Time streak Task: 0
+      </Subheadline>
+
+      <Subheadline level="1" weight="3">
+        Fren streak Task: 0
+      </Subheadline>
+
+      <div className="mt-10">
+        <Subheadline level="1" weight="3">
+          Social Tasks
+        </Subheadline>
+
+        <div className="flex flex-col">
+          <Caption
+            level="1"
+            weight="3"
+            onClick={() => util.openLink("https://www.instagram.com")}
+          >
+            Instagram
+          </Caption>
+          <Caption
+            level="1"
+            weight="3"
+            onClick={() => util.openLink("https://www.x.com")}
+          >
+            Twitter
+          </Caption>
+          <Caption
+            level="1"
+            weight="3"
+            onClick={() => util.openLink("https://www.telegram.com")}
+          >
+            Telegram
+          </Caption>
+        </div>
       </div>
 
       <div className=" absolute bottom-4 left-5">
