@@ -20,12 +20,15 @@ import { useTelegramMock } from "@/hooks/useTelegramMock";
 import { useDidMount } from "@/hooks/useDidMount";
 
 import "./styles.css";
+import { swipeBehavior } from "@telegram-apps/sdk";
 
 function App(props: PropsWithChildren) {
   const lp = useLaunchParams();
   const miniApp = useMiniApp();
   const themeParams = useThemeParams();
   const viewport = useViewport();
+
+  swipeBehavior.disableVertical();
 
   useEffect(() => {
     return bindMiniAppCSSVars(miniApp, themeParams);
@@ -36,6 +39,7 @@ function App(props: PropsWithChildren) {
   }, [themeParams]);
 
   useEffect(() => {
+    viewport?.expand();
     return viewport && bindViewportCSSVars(viewport);
   }, [viewport]);
 

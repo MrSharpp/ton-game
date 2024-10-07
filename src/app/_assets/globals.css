@@ -1,3 +1,8 @@
+@font-face {
+  font-family: "font-name";
+  src: url("/FontsFree-Net-HoboStd.ttf");
+}
+
 body {
   background: var(--tg-theme-secondary-bg-color, white);
 }
@@ -11,4 +16,8 @@ body {
 }
 .checkbox svg {
   fill: rgb(53, 53, 53);
+}
+
+* {
+  font-family: "font-name" !important;
 }
