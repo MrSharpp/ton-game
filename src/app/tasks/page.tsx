@@ -12,7 +12,7 @@ import {
 import dayjs, { Dayjs } from "dayjs";
 import timezone from "dayjs/plugin/timezone";
 import utc from "dayjs/plugin/utc";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { COUNT_OF_TASKS } from "../constants";
 
 dayjs.extend(utc);
@@ -31,6 +31,7 @@ function TaskPage() {
   const { user, fetchUser } = useUser();
   const [streaks, setStreaks] = useState(user?.taskStreaks ?? 0);
   const util = useUtils();
+  const [tasks, setTasks] = useState<Task[]>([]);
 
   const userTasksQuery = useQuery({
     queryFn: () => fetch(`/api/tasks/${userID}`).then((res) => res.json()),
@@ -43,6 +44,16 @@ function TaskPage() {
       return items;
     },
   });
+
+  useEffect(() => {
+    if (userTasksQuery.data) {
+      const mappedTasks = userTasksQuery.data.map((item, index) => ({
+        ...item,
+        enabled: shouldTaskBeEnabled(item, index),
+      }));
+      setTasks(mappedTasks);
+    }
+  }, [userTasksQuery.data]);
 
   const taskMutation = useMutation({
     mutationFn: (hour: number) =>
@@ -64,10 +75,10 @@ function TaskPage() {
     });
   }
 
-  function shouldTaskBeEnabled(task: Task, index: number) {
+  function shouldTaskBeEnabled(task: any, index: number) {
     const prevTask = (userTasksQuery.data || [])[index - 1];
 
-    if (!prevTask) return true;
+    if (!prevTask && !task.completeTime) return true;
 
     const newTaskElapsedTimePassed = dayjs().isAfter(
       dayjs(prevTask?.completeTime).add(8, "hours")
@@ -87,7 +98,7 @@ function TaskPage() {
       </h1>
 
       <div className="grid grid-cols-2 px-5 pb-8 gap-2 ">
-        {(userTasksQuery.data || []).map((item: Task, index) => (
+        {tasks.map((item: Task, index) => (
           <div key={item.Id}>
             <Cell
               Component={"label"}
@@ -105,7 +116,7 @@ function TaskPage() {
                     }
                   }}
                   defaultChecked={!item.toComplete}
-                  disabled={!shouldTaskBeEnabled(item, index)}
+                  disabled={!item.enabled}
                 />
               }
               className="rounded-md border border-green-600"
