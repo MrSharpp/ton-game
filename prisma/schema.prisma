@@ -49,4 +49,6 @@ model Task {
   taskIndex Int
 
   completeTime DateTime @default(now())
+
+  @@unique([userId, taskIndex])
 }

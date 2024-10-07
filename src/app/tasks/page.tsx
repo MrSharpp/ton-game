@@ -69,11 +69,11 @@ function TaskPage() {
 
     if (!prevTask) return true;
 
-    if (prevTask?.toComplete) return false;
-
     const newTaskElapsedTimePassed = dayjs().isAfter(
       dayjs(prevTask?.completeTime).add(8, "hours")
     );
+
+    if (prevTask?.toComplete && newTaskElapsedTimePassed) return false;
 
     if (newTaskElapsedTimePassed) return true;
 

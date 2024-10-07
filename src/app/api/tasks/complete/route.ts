@@ -3,8 +3,8 @@ import { prismaClient } from "@/db/prisma-client";
 export async function POST(request: Request) {
   const body = JSON.parse(await request.text());
 
-  await prismaClient.task.create({
-    data: {
+  await prismaClient.task.upsert({
+    create: {
       taskIndex: body.hour,
       User: {
         connect: {
@@ -12,6 +12,13 @@ export async function POST(request: Request) {
         },
       },
     },
+    where: {
+      userId_taskIndex: {
+        userId: body.userId,
+        taskIndex: body.hour,
+      },
+    },
+    update: {},
   });
 
   await prismaClient.user.update({
