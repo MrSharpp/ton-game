@@ -34,8 +34,6 @@ function TaskPage() {
   const util = useUtils();
   const [tasks, setTasks] = useState<Task[]>([]);
 
-  console.log(tasks);
-
   const userTasksQuery = useQuery({
     queryFn: () => fetch(`/api/tasks/${userID}`).then((res) => res.json()),
     queryKey: ["tasks", userID],
