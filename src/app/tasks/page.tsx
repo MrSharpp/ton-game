@@ -2,13 +2,7 @@
 import { useUser } from "@/hooks/useUser";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { useLaunchParams } from "@telegram-apps/sdk-react";
-import {
-  Caption,
-  Cell,
-  Checkbox,
-  Section,
-  Title,
-} from "@telegram-apps/telegram-ui";
+import { Caption, Cell, Checkbox, Title } from "@telegram-apps/telegram-ui";
 import dayjs, { Dayjs } from "dayjs";
 import timezone from "dayjs/plugin/timezone";
 import utc from "dayjs/plugin/utc";
