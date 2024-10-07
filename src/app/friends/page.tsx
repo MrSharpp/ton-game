@@ -32,11 +32,7 @@ export default function Page() {
 
   return (
     <div>
-      <Title
-        level="3"
-        weight="1"
-        className="p-5 sticky top-0 z-50 backdrop-blur-lg"
-      >
+      <h1 className="p-5 sticky top-0 z-50 backdrop-blur-lg font-bold text-xl">
         Friends
         <Button
           style={{ float: "right" }}
@@ -45,7 +41,7 @@ export default function Page() {
         >
           Refer A Friend
         </Button>
-      </Title>
+      </h1>
 
       <List>
         {(friendsQuery.data || []).map((item) => (
@@ -56,6 +52,12 @@ export default function Page() {
             {item.Friend.firstName} {item.Friend.lastName}
           </Cell>
         ))}
+
+        {/* <div className="py-4 px-6 flex justify-between">
+          <h3>Fname LName</h3>
+
+          <div>Task Streaks: 1</div>
+        </div> */}
       </List>
     </div>
   );

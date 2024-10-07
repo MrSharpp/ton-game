@@ -19,7 +19,7 @@ export default function RootLayout({ children }: Readonly<PropsWithChildren>) {
         <QueryClientProvider client={queryClient}>
           <Root>
             <UserProvider>
-              <div className="h-screen flex flex-col">
+              <div className="h-screen flex flex-col bg-black text-white">
                 <div
                   style={{
                     height: "100vh",
