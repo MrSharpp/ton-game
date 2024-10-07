@@ -43,7 +43,7 @@ export default function Home() {
     <div
       style={{
         textAlign: "center",
-        height: "100vh",
+        height: "100%",
         display: "flex",
         justifyContent: "center",
         flexDirection: "column",

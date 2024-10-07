@@ -23,7 +23,7 @@ export default function RootLayout({ children }: Readonly<PropsWithChildren>) {
                 <div
                   style={{
                     height: "calc(100vh - 82px)",
-                    overflow: "scroll",
+                    overflow: "auto",
                   }}
                 >
                   {children}
