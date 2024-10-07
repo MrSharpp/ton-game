@@ -1,7 +1,13 @@
 "use client";
 
 import { useUser } from "@/hooks/useUser";
-import { Button, LargeTitle, Subheadline } from "@telegram-apps/telegram-ui";
+import {
+  Button,
+  Caption,
+  LargeTitle,
+  Subheadline,
+  Text,
+} from "@telegram-apps/telegram-ui";
 import {
   TonConnectButton,
   useTonConnectUI,
@@ -83,6 +89,24 @@ export default function Home() {
             {user?.transactionDone ? " ✅" : ""}
           </div>
         )}
+      </div>
+
+      <div className="mt-5 px-5">
+        <ul>
+          <li>
+            <Caption weight="3" level="1">
+              An airdrop is the distribution of tokens to players wallets. These
+              tokens will be traded on top exchanges, and you can either sell or
+              hold them. Toreceive your tokens, you must complete the two tasks
+              above.
+            </Caption>
+          </li>
+          <li>
+            <Caption weight="3" level="1">
+              Airdrop date will be announed soon in our telegram channel.
+            </Caption>
+          </li>
+        </ul>
       </div>
     </div>
   );

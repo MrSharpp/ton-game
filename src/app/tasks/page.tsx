@@ -127,9 +127,9 @@ function TaskPage() {
           </div>
         ))}
       </div>
-      <Title weight="3">Time streak Task: 0</Title>
+      <Title weight="3">Time streak Task: {user?.taskStreaks}</Title>
 
-      <Title weight="3">Fren streak Task: 0</Title>
+      <Title weight="3">Fren streak Task: {user?.friendStreaks}</Title>
 
       <div className="mt-10">
         <Subheadline level="1" weight="3">
