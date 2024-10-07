@@ -19,7 +19,7 @@ export const UserContextProvider = UserContext.Provider;
 
 export function UserProvider({ children }: any) {
   const [loading, setLoading] = useState(true);
-  const [splashScreenVisible, setSplahScreenVisible] = useState(true);
+  const [splashScreenVisible, setSplahScreenVisible] = useState(false);
   const tgUser = useLaunchParams()?.initData?.user;
   const [user, setUser] = useState<User>();
 
@@ -48,8 +48,7 @@ export function UserProvider({ children }: any) {
     }, 3_000);
   }, []);
 
-  if (loading || splashScreenVisible)
-    return <SplashScreen path={"/splash.mp4"} />;
+  if (loading) return <SplashScreen path={"/splash.mp4"} />;
 
   return (
     <UserContextProvider value={{ user: user, fetchUser, setUser }}>
