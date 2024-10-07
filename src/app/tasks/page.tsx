@@ -102,20 +102,6 @@ function TaskPage() {
       "hours"
     );
 
-    if (DEBUG) {
-      console.log(`-------------------${index}--------------------`);
-      debugDayjs(dayjs(user?.taskStartTime), "userStartTime");
-      debugDayjs(currentTaskStartTime, "lastTaskEndTime");
-      debugDayjs(currentTime, "currentTime");
-      debugDayjs(currentTaskEndtime, "currentTaskEndtime");
-    }
-
-    if (
-      currentTime.isAfter(currentTaskStartTime) &&
-      currentTime.isBefore(currentTaskEndtime)
-    )
-      return true;
-
     return false;
   }
 

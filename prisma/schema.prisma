@@ -44,5 +44,7 @@ model Task {
   User   User @relation(fields: [userId], references: [Id])
   userId Int
 
-  hourIndex Int
+  taskIndex Int
+
+  time DateTime @default(now())
 }
