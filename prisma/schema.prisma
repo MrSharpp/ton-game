@@ -23,6 +23,8 @@ model User {
   tgId          Int      @unique
   username      String   @unique
 
+  transactionDone Boolean @default(false)
+
   Friends    Friend[] @relation("FriendRelation")
   FriendedBy Friend[] @relation("UserRelation")
   Tasks      Task[]
@@ -34,9 +36,6 @@ model Friend {
 
   Friend   User @relation("FriendRelation", fields: [friendId], references: [Id])
   friendId Int
-
-  walletConnected Boolean @default(false)
-  transactionDone Boolean @default(false)
 
   @@id([userId, friendId])
 }

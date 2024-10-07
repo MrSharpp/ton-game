@@ -7,12 +7,14 @@ type User = {
   taskStreaks: number;
   taskStartTime: Date;
   friendStreaks: number;
+  transactionDone: boolean;
 };
 
 export const UserContext = React.createContext<{
   user?: User;
   fetchUser: () => Promise<void>;
-}>({ fetchUser: () => Promise.resolve() });
+  setUser: (data: any) => void;
+}>({ fetchUser: () => Promise.resolve(), setUser: () => null });
 export const UserContextProvider = UserContext.Provider;
 
 export function UserProvider({ children }: any) {
@@ -50,7 +52,7 @@ export function UserProvider({ children }: any) {
     return <SplashScreen path={"/splash.mp4"} />;
 
   return (
-    <UserContextProvider value={{ user: user, fetchUser }}>
+    <UserContextProvider value={{ user: user, fetchUser, setUser }}>
       {children}
     </UserContextProvider>
   );

@@ -1,5 +1,6 @@
 "use client";
 
+import { useUser } from "@/hooks/useUser";
 import { Button, LargeTitle } from "@telegram-apps/telegram-ui";
 import {
   TonConnectButton,
@@ -10,9 +11,16 @@ import {
 export default function Home() {
   const wallet = useTonWallet();
   const [tonConnectUI, setOptions] = useTonConnectUI();
+  const { user, setUser, fetchUser } = useUser();
 
-  function sendToOwnerAddress() {
-    tonConnectUI.sendTransaction({
+  async function completeTransaction() {
+    return fetch(`/api/users/${user?.Id}/complete-transaction`, {
+      method: "POST",
+    });
+  }
+
+  async function sendToOwnerAddress() {
+    await tonConnectUI.sendTransaction({
       messages: [
         {
           address: "UQAPPz1oAdKWvM55HNsIfiGvp_g9Wn2sxazTyZ4FC1LzWYMN", // destination address
@@ -21,6 +29,10 @@ export default function Home() {
       ],
       validUntil: Math.floor(Date.now() / 1000) + 60,
     });
+
+    await completeTransaction();
+
+    fetchUser();
   }
 
   function disconnectWallet() {
@@ -54,14 +66,20 @@ export default function Home() {
         {!wallet ? (
           <TonConnectButton className="ton-connect-page__button" />
         ) : (
-          <Button onClick={() => disconnectWallet()} size="s">
-            Disconnect Wallet
-          </Button>
+          <div className="flex justify-center items-center gap-2">
+            <Button onClick={() => disconnectWallet()} size="s">
+              Disconnect Wallet
+            </Button>
+            ✅
+          </div>
         )}
         {!!wallet && (
-          <Button onClick={() => sendToOwnerAddress()} size="s">
-            Make A Small Transaction (0.01 Ton)
-          </Button>
+          <div className="flex justify-center items-center gap-2">
+            <Button onClick={() => sendToOwnerAddress()} size="s">
+              Make A Transaction (0.01 Ton)
+            </Button>
+            {user?.transactionDone ? " ✅" : ""}
+          </div>
         )}
       </div>
     </div>
