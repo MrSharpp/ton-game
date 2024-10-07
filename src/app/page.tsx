@@ -24,13 +24,7 @@ export default function Home() {
         position: "relative",
       }}
     >
-      <LargeTitle
-        weight="1"
-        style={{ marginBottom: "50px", color: "white" }}
-        color="white"
-      >
-        AiBulls.io
-      </LargeTitle>
+      <img src="/banner.png" />
     </div>
   );
 }

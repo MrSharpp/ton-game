@@ -32,6 +32,7 @@ function debugDayjs(day: Dayjs, text?: string) {
 function TaskPage() {
   const userID = useLaunchParams().initData?.user?.id;
   const { user, fetchUser } = useUser();
+  const [streaks, setStreaks] = useState(user?.taskStreaks ?? 0);
 
   const userTasksQuery = useQuery({
     queryFn: () => fetch(`/api/tasks/${userID}`).then((res) => res.json()),
@@ -102,6 +103,7 @@ function TaskPage() {
                   onChange={async (e) => {
                     e.target.disabled = true;
                     taskMutation.mutate(index + 1);
+                    setStreaks(streaks + 1);
 
                     if (index + 1 == userTasksQuery.data?.length) {
                       resetTasks();
@@ -121,7 +123,7 @@ function TaskPage() {
 
       <Section.Footer>
         <Caption level="1" weight="2">
-          Streaks: {user?.taskStreaks}
+          Streaks: {streaks}
         </Caption>
       </Section.Footer>
     </Section>
