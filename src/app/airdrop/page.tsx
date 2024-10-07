@@ -50,9 +50,9 @@ export default function Home() {
         alignItems: "center",
       }}
     >
-      <LargeTitle weight="1" style={{ marginBottom: "50px" }}>
+      <h1 className="text-3xl font-bold" style={{ marginBottom: "50px" }}>
         Airdrop
-      </LargeTitle>
+      </h1>
 
       <div
         style={{

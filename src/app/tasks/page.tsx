@@ -75,13 +75,9 @@ function TaskPage() {
 
   return (
     <div className="h-full relative">
-      <Title
-        className="p-5 sticky top-0 z-50 backdrop-blur-lg"
-        level="3"
-        weight="1"
-      >
+      <h1 className="p-5 sticky top-0 z-50 backdrop-blur-lg font-bold text-xl">
         Tasks
-      </Title>
+      </h1>
 
       <div className="grid grid-cols-2 px-5 pb-8 gap-2 ">
         {(userTasksQuery.data || []).map((item: Task, index) => (
