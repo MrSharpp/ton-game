@@ -34,6 +34,8 @@ function TaskPage() {
   const util = useUtils();
   const [tasks, setTasks] = useState<Task[]>([]);
 
+  console.log(tasks);
+
   const userTasksQuery = useQuery({
     queryFn: () => fetch(`/api/tasks/${userID}`).then((res) => res.json()),
     queryKey: ["tasks", userID],
@@ -87,7 +89,7 @@ function TaskPage() {
 
     if (prevTask?.toComplete && newTaskElapsedTimePassed) return false;
 
-    if (newTaskElapsedTimePassed) return true;
+    if (newTaskElapsedTimePassed && !task.completeTime) return true;
 
     return false;
   }
@@ -111,6 +113,7 @@ function TaskPage() {
                     e.target.disabled = true;
                     taskMutation.mutate(index + 1);
                     setStreaks(streaks + 1);
+                    userTasksQuery.refetch();
 
                     if (index + 1 == userTasksQuery.data?.length) {
                       resetTasks();
