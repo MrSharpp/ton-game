@@ -1,21 +1,18 @@
 "use client";
-import { prismaClient } from "@/db/prisma-client";
 import { useUser } from "@/hooks/useUser";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { useLaunchParams } from "@telegram-apps/sdk-react";
 import {
-  Card,
+  Caption,
   Cell,
   Checkbox,
   Section,
   Title,
-  Text,
-  Caption,
 } from "@telegram-apps/telegram-ui";
 import dayjs, { Dayjs } from "dayjs";
-import React, { useEffect, useState } from "react";
-import utc from "dayjs/plugin/utc";
 import timezone from "dayjs/plugin/timezone";
+import utc from "dayjs/plugin/utc";
+import { useState } from "react";
 import { COUNT_OF_TASKS } from "../constants";
 
 dayjs.extend(utc);

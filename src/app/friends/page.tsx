@@ -2,28 +2,15 @@
 
 import { useUser } from "@/hooks/useUser";
 import { useQuery } from "@tanstack/react-query";
-import { useLaunchParams, useUtils } from "@telegram-apps/sdk-react";
-import {
-  Avatar,
-  Button,
-  Cell,
-  List,
-  Navigation,
-  Section,
-  Title,
-} from "@telegram-apps/telegram-ui";
-import React, { use } from "react";
-import { BOT_USERNAME, SHARE_MESSAGE } from "../constants";
-
-type Props = {};
+import { useUtils } from "@telegram-apps/sdk-react";
+import { Button, Cell, List, Title } from "@telegram-apps/telegram-ui";
+import { BOT_USERNAME } from "../constants";
 
 const arr = new Array(15).fill(0).map((_, i) => i);
 
-export default function Page({}: Props) {
+export default function Page() {
   const utils = useUtils();
   const { user } = useUser();
-
-  console.log(user);
 
   function referFriend() {
     const encodedUrl = encodeURIComponent(
@@ -37,9 +24,7 @@ export default function Page({}: Props) {
   const friendsQuery = useQuery({
     queryKey: ["friends", user],
     queryFn: () =>
-      fetch(`/api/friends/${user?.Id}`).then(async (res) =>
-        JSON.parse(await res.text())
-      ),
+      fetch(`/api/friends/${user?.Id}`).then(async (res) => await res.json()),
     placeholderData: [],
   });
 
