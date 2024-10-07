@@ -24,6 +24,7 @@ export default function RootLayout({ children }: Readonly<PropsWithChildren>) {
                   style={{
                     height: "100vh",
                     overflow: "auto",
+                    paddingBottom: 100,
                   }}
                 >
                   {children}
