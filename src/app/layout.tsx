@@ -22,16 +22,14 @@ export default function RootLayout({ children }: Readonly<PropsWithChildren>) {
               <div className="h-screen flex flex-col">
                 <div
                   style={{
-                    height: "calc(100vh - 82px)",
+                    height: "100vh",
                     overflow: "auto",
                   }}
                 >
                   {children}
                 </div>
 
-                <div style={{ height: "82px" }}>
-                  <AppTabBar />
-                </div>
+                <AppTabBar />
               </div>
             </UserProvider>
           </Root>

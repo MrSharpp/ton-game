@@ -43,7 +43,7 @@ function AppTabBar() {
   }
 
   return (
-    <Tabbar>
+    <Tabbar style={{ height: "100px" }}>
       {tabItems.map(({ text, icon, to }) => (
         <Tabbar.Item
           key={text}
