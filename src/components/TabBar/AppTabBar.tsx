@@ -35,7 +35,7 @@ const tabItems = [
 
 function AppTabBar() {
   const router = useRouter();
-  const [selectedTab, setSelectedTab] = useState("");
+  const [selectedTab, setSelectedTab] = useState("/");
 
   function switchTab(to: string) {
     setSelectedTab(to);
