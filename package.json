@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "tunnel": "ngrok http 3000 --url eager-rat-separately.ngrok-free.app",
+    "tunnel": "loophole http 3000 --hostname tongame",
     "dev:https": "next dev --experimental-https",
     "build": "next build",
     "start": "next start",

@@ -20,7 +20,6 @@ import { COUNT_OF_TASKS } from "../constants";
 
 dayjs.extend(utc);
 dayjs.extend(timezone);
-const DEBUG = false;
 
 type Task = { toComplete: boolean; Id: number };
 const tz = dayjs.tz.guess();
@@ -46,12 +45,6 @@ function TaskPage() {
     },
   });
 
-  const completedAllTasks = userTasksQuery?.data?.every(
-    (item) => !item.toComplete
-  );
-
-  console.log("all task completed:", completedAllTasks);
-
   const taskMutation = useMutation({
     mutationFn: (hour: number) =>
       fetch(`/api/tasks/complete`, {
@@ -60,52 +53,33 @@ function TaskPage() {
       }),
   });
 
-  useEffect(() => {
-    if (!user || userTasksQuery.isLoading || userTasksQuery.isFetching) return;
-    const taskDeadline = dayjs(user?.taskStartTime).add(
-      COUNT_OF_TASKS,
-      "hours"
-    );
-
-    const currentTime = dayjs();
-
-    // if 7hours already passed since taskStartTime
-    if (currentTime.isAfter(taskDeadline)) {
-      // request to change the taskSTart time to now
-      fetch(`/api/tasks/reset`, {
-        body: JSON.stringify({
-          userId: user?.Id,
-          completedAll: completedAllTasks,
-        }),
-        method: "POST",
-      }).then(async () => {
-        await fetchUser();
-        userTasksQuery.refetch();
-      });
-    }
-  }, [
-    user,
-    user?.Id,
-    user?.taskStartTime,
-    userTasksQuery.isLoading,
-    userTasksQuery.isFetching,
-  ]);
+  function resetTasks() {
+    fetch(`/api/tasks/reset`, {
+      body: JSON.stringify({
+        userId: user?.Id,
+      }),
+      method: "POST",
+    }).then(async () => {
+      await fetchUser();
+      userTasksQuery.refetch();
+    });
+  }
 
   function shouldTaskBeEnabled(task: Task, index: number) {
-    if (!task.toComplete) return false;
+    const prevTask = (userTasksQuery.data || [])[index - 1];
 
-    const currentTime = dayjs().tz(tz);
+    if (!prevTask) return true;
 
-    const currentTaskStartTime = dayjs(user?.taskStartTime).add(index, "hours");
-    const currentTaskEndtime = dayjs(user?.taskStartTime).add(
-      index + 1,
-      "hours"
+    if (prevTask?.toComplete) return false;
+
+    const newTaskElapsedTimePassed = dayjs().isAfter(
+      dayjs(prevTask?.completeTime).add(8, "hours")
     );
+
+    if (newTaskElapsedTimePassed) return true;
 
     return false;
   }
-
-  if (userTasksQuery.isLoading) return "Loading....";
 
   return (
     <Section>
@@ -130,7 +104,7 @@ function TaskPage() {
                     taskMutation.mutate(index + 1);
 
                     if (index + 1 == userTasksQuery.data?.length) {
-                      console.log(completedAllTasks);
+                      resetTasks();
                     }
                   }}
                   defaultChecked={!item.toComplete}

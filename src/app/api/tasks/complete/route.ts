@@ -5,13 +5,18 @@ export async function POST(request: Request) {
 
   await prismaClient.task.create({
     data: {
-      hourIndex: body.hour,
+      taskIndex: body.hour,
       User: {
         connect: {
           Id: body.userId,
         },
       },
     },
+  });
+
+  await prismaClient.user.update({
+    where: { Id: body.userId },
+    data: { taskStreaks: { increment: 1 } },
   });
 
   return Response.json(null);
