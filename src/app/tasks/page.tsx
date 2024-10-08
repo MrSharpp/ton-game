@@ -50,7 +50,6 @@ export const Countdown: React.FC<any> = ({ endTime, cb }) => {
       );
 
       if (duration.asMilliseconds() < 1) {
-        cb();
         return setTime(`0h 0m 0s`);
       }
 
@@ -106,7 +105,11 @@ function TaskPage() {
     const mappedTasks = userTasksQuery.data.map((item, index) => {
       let enabled = false;
       if (taskEnabled) return item;
-      console.log(index, timeLeft);
+
+      if (index == 0) {
+        if (user?.lastTaskCompleted && timeLeft < 1) enabled = true;
+        if (!user?.lastTaskCompleted) enabled = true;
+      }
 
       if (timeLeft < 1 && !item.Id) {
         enabled = true;
@@ -154,7 +157,7 @@ function TaskPage() {
         Tasks
       </h1>
 
-      <div className="grid grid-cols-2  pb-8 gap-2 ">
+      <div className="grid grid-cols-2  gap-2 mb-2">
         {tasks.map((item: Task, index) => (
           <div key={item.Id}>
             <Cell
@@ -190,16 +193,20 @@ function TaskPage() {
           </div>
         ))}
       </div>
-      <Title weight="3">Time streak Task: {user?.taskStreaks}</Title>
+      <div className="text-center">
+        <Caption weight="3">
+          Next Task In: <Countdown endTime={endTime} />
+        </Caption>
+      </div>
+
+      <Title weight="3" className="mt-10">
+        Time streak Task: {user?.taskStreaks}
+      </Title>
 
       <Title weight="3">Friend streak Task: {user?.friendStreaks ?? 0}</Title>
 
-      <Title weight="3">
-        Time Left: <Countdown endTime={endTime} />
-      </Title>
-
-      <div className="mt-10">
-        <Subheadline level="1" weight="3">
+      <div className="mt-10 ">
+        <Subheadline level="1" weight="3" className="text-center">
           {"->"} Social Tasks
         </Subheadline>
 
@@ -207,21 +214,29 @@ function TaskPage() {
           <Caption
             level="1"
             weight="3"
-            onClick={() => util.openLink("https://www.instagram.com")}
+            onClick={() =>
+              util.openLink(
+                "https://www.instagram.com/aibulls.io/profilecard/?igsh=MThhM3VoampqbXZi"
+              )
+            }
           >
             Instagram
           </Caption>
           <Caption
             level="1"
             weight="3"
-            onClick={() => util.openLink("https://www.x.com")}
+            onClick={() =>
+              util.openLink(
+                "https://x.com/Aibullsio?t=QgDntFSRp7-hQo8NXdgWyA&s=09"
+              )
+            }
           >
             Twitter
           </Caption>
           <Caption
             level="1"
             weight="3"
-            onClick={() => util.openLink("https://www.telegram.com")}
+            onClick={() => util.openLink("https://t.me/+6-qJa49qw2BhNDI1")}
           >
             Telegram
           </Caption>
