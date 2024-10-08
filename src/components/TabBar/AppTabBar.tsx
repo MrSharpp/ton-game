@@ -1,7 +1,7 @@
 "use client";
 
 import { Tabbar } from "@telegram-apps/telegram-ui";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   IconHome,
   IconUsersGroup,
@@ -9,6 +9,7 @@ import {
   IconGift,
 } from "@tabler/icons-react";
 import { usePathname, useRouter } from "next/navigation";
+import { useQueryClient } from "@tanstack/react-query";
 
 const tabItems = [
   {
@@ -40,6 +41,12 @@ function AppTabBar() {
   function switchTab(to: string) {
     router.push(to);
   }
+
+  const queryClient = useQueryClient();
+
+  useEffect(() => {
+    queryClient.refetchQueries();
+  }, [pathname]);
 
   return (
     <Tabbar style={{ height: "100px" }}>
