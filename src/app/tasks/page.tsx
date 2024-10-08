@@ -178,14 +178,13 @@ function TaskPage() {
                 e.target.disabled = true;
                 if (!!item.Id || !item.enabled) return false;
 
-                setEndTime(dayjs().add(1, "minutes"));
+                await taskMutation.mutateAsync(index + 1);
                 setStreaks(streaks + 1);
-                const mappedTasks = tasks.map((item, i) => {
-                  if (index == i) return { ...item, enabled: false };
+                const mappedTasks = tasks.map((item, index) => {
+                  if (index == index) return { ...item, enabled: false };
                   return item;
                 });
                 setTasks(mappedTasks);
-                await taskMutation.mutateAsync(index + 1);
                 await userTasksQuery.refetch();
                 setUser({
                   ...user,
@@ -196,6 +195,7 @@ function TaskPage() {
                 if (index + 1 == userTasksQuery.data?.length) {
                   await resetTasks();
                 }
+                setEndTime(dayjs().add(1, "minutes"));
               }}
             >
               {item.completeTime ? "Claimed" : `Claim ${index + 1}`}
