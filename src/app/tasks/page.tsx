@@ -49,7 +49,7 @@ export const Countdown: React.FC<any> = ({ endTime, cb }) => {
         "milliseconds"
       );
 
-      if (duration.asMilliseconds() < 1 && cb) {
+      if (duration.asMilliseconds() < 1) {
         cb();
         return setTime(`0h 0m 0s`);
       }
