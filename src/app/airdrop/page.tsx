@@ -1,12 +1,13 @@
 "use client";
 
 import { useUser } from "@/hooks/useUser";
-import { Button, Caption, Subheadline } from "@telegram-apps/telegram-ui";
+import { Button, Subheadline } from "@telegram-apps/telegram-ui";
 import {
   TonConnectButton,
   useTonConnectUI,
   useTonWallet,
 } from "@tonconnect/ui-react";
+import Link from "next/link";
 
 export default function Home() {
   const wallet = useTonWallet();
@@ -75,6 +76,7 @@ export default function Home() {
             ✅
           </div>
         )}
+
         {!!wallet && (
           <div className="flex justify-center items-center gap-2">
             <Button onClick={() => sendToOwnerAddress()} size="s">
@@ -99,6 +101,12 @@ export default function Home() {
             Airdrop date will be announced soon in our telegram channel.
           </li>
         </ul>
+      </div>
+
+      <div className="pt-8 flex justify-center">
+        <Button Component={Link} href="/airdrop/roadmap">
+          View Roadmap
+        </Button>
       </div>
     </div>
   );

@@ -8,7 +8,7 @@ import {
   IconChecklist,
   IconGift,
 } from "@tabler/icons-react";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 
 const tabItems = [
   {
@@ -35,10 +35,9 @@ const tabItems = [
 
 function AppTabBar() {
   const router = useRouter();
-  const [selectedTab, setSelectedTab] = useState("/");
+  const pathname = usePathname();
 
   function switchTab(to: string) {
-    setSelectedTab(to);
     router.push(to);
   }
 
@@ -48,7 +47,7 @@ function AppTabBar() {
         <Tabbar.Item
           key={text}
           text={text}
-          selected={to == selectedTab}
+          selected={to === pathname || (pathname.startsWith(to) && to !== "/")}
           onClick={() => switchTab(to)}
         >
           {icon}

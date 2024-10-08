@@ -28,8 +28,6 @@ export default function Page() {
     placeholderData: [],
   });
 
-  console.log(friendsQuery.data);
-
   return (
     <div>
       <h1 className="p-5 sticky top-0 z-50 backdrop-blur-lg font-bold text-xl">
