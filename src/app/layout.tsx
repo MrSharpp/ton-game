@@ -21,7 +21,7 @@ export default function RootLayout({ children }: Readonly<PropsWithChildren>) {
             <UserProvider>
               <div
                 className="h-screen flex flex-col text-white "
-                style={{ background: "url(/bg.png" }}
+                style={{ background: "url(/bg.jpg" }}
               >
                 <div
                   style={{
