@@ -14,7 +14,8 @@ export default function Page() {
 
   function referFriend() {
     const encodedUrl = encodeURIComponent(
-      `https://t.me/${BOT_USERNAME}?startapp=${user?.Id || ""}`
+      // `https://t.me/${BOT_USERNAME}?startapp=${user?.Id || ""}`
+      `https://t.me/owoelawnbot/mybot?startapp=${user?.Id || ""}`
     );
     utils.openTelegramLink(
       `https://t.me/share/url?url=${encodedUrl.toString()}`
@@ -26,6 +27,7 @@ export default function Page() {
     queryFn: () =>
       fetch(`/api/friends/${user?.Id}`).then(async (res) => await res.json()),
     placeholderData: [],
+    enabled: !!user?.Id,
   });
 
   return (

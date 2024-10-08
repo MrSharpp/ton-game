@@ -26,6 +26,8 @@ export function UserProvider({ children }: any) {
 
   const startParam = useLaunchParams().startParam;
 
+  console.log({ startParam: useLaunchParams() });
+
   function fetchUser() {
     return fetch(`/api/users/upsert?referId=${startParam}`, {
       method: "POST",
