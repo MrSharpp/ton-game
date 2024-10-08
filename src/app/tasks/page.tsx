@@ -72,21 +72,21 @@ function TaskPage() {
   const util = useUtils();
   const [tasks, setTasks] = useState<Task[]>([]);
   const [endTime, setEndTime] = useState(
-    dayjs(user?.lastTaskCompleted).add(5, "minutes")
+    dayjs(user?.lastTaskCompleted).add(1, "minutes")
   );
   const timeLeft = dayjs
     .duration((endTime.unix() - dayjs().unix()) * 1000)
     .asSeconds();
 
   useEffect(() => {
-    const endTime = dayjs(user?.lastTaskCompleted).add(5, "minutes");
+    const endTime = dayjs(user?.lastTaskCompleted).add(1, "minutes");
     setEndTime(endTime);
     const id = setTimeout(() => {
       initTasks();
     }, timeLeft * 1000);
 
     return () => clearTimeout(id);
-  }, [user?.lastTaskCompleted]);
+  }, [user?.lastTaskCompleted, timeLeft]);
 
   const userTasksQuery = useQuery({
     queryFn: () => fetch(`/api/tasks/${userID}`).then((res) => res.json()),
@@ -108,9 +108,10 @@ function TaskPage() {
       let enabled = false;
       if (taskEnabled) return item;
 
-      if (index == 0) {
-        if (user?.lastTaskCompleted && timeLeft < 1) enabled = true;
-        if (!user?.lastTaskCompleted) enabled = true;
+      if (index == 0 && user?.lastTaskCompleted && timeLeft < 1 && !item.Id) {
+        enabled = true;
+        taskEnabled = true;
+        console.log(index, timeLeft);
       }
 
       if (timeLeft < 1 && !item.Id) {
@@ -126,12 +127,11 @@ function TaskPage() {
 
     setTasks(mappedTasks);
   }
+  console.log(tasks);
 
   useEffect(() => {
     initTasks();
   }, [userTasksQuery.data]);
-
-  console.log(tasks);
 
   const taskMutation = useMutation({
     mutationFn: (hour: number) =>
@@ -142,13 +142,13 @@ function TaskPage() {
   });
 
   function resetTasks() {
-    setTasks([]);
-    fetch(`/api/tasks/reset`, {
+    return fetch(`/api/tasks/reset`, {
       body: JSON.stringify({
         userId: user?.Id,
       }),
       method: "POST",
     }).then(async () => {
+      setTasks([]);
       await fetchUser();
       userTasksQuery.refetch();
     });
@@ -171,9 +171,9 @@ function TaskPage() {
                   className="checkbox"
                   onChange={async (e) => {
                     e.target.disabled = true;
-                    taskMutation.mutate(index + 1);
+                    await taskMutation.mutate(index + 1);
                     setStreaks(streaks + 1);
-                    userTasksQuery.refetch();
+                    await userTasksQuery.refetch();
                     setUser({
                       ...user,
                       taskStreaks: (user?.taskStreaks || 0) + 1,
@@ -181,9 +181,9 @@ function TaskPage() {
                     });
 
                     if (index + 1 == userTasksQuery.data?.length) {
-                      resetTasks();
+                      await resetTasks();
                     }
-                    setEndTime(dayjs().add(5, "minutes"));
+                    setEndTime(dayjs().add(1, "minutes"));
                   }}
                   defaultChecked={!!item.Id}
                   disabled={!item.enabled || !!item.Id}
