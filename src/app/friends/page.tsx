@@ -49,7 +49,7 @@ export default function Page() {
             key={item.Id}
             after={
               <div>
-                Task/Fren Streaks: {item.Friend.taskStreaks} -{" "}
+                Time/Fren Streaks: {item.Friend.taskStreaks} -{" "}
                 {item.Friend.friendStreaks}
               </div>
             }
