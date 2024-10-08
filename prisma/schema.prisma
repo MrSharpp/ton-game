@@ -23,7 +23,8 @@ model User {
   tgId          Int      @unique
   username      String   @unique
 
-  transactionDone Boolean @default(false)
+  transactionDone   Boolean   @default(false)
+  lastTaskCompleted DateTime?
 
   Friends    Friend[] @relation("FriendRelation")
   FriendedBy Friend[] @relation("UserRelation")
