@@ -205,8 +205,8 @@ function TaskPage() {
 
       <Title weight="3">Friend streak Task: {user?.friendStreaks ?? 0}</Title>
 
-      <div className="mt-10">
-        <Subheadline level="1" weight="3">
+      <div className="mt-10 ">
+        <Subheadline level="1" weight="3" className="text-center">
           {"->"} Social Tasks
         </Subheadline>
 
@@ -214,21 +214,29 @@ function TaskPage() {
           <Caption
             level="1"
             weight="3"
-            onClick={() => util.openLink("https://www.instagram.com")}
+            onClick={() =>
+              util.openLink(
+                "https://www.instagram.com/aibulls.io/profilecard/?igsh=MThhM3VoampqbXZi"
+              )
+            }
           >
             Instagram
           </Caption>
           <Caption
             level="1"
             weight="3"
-            onClick={() => util.openLink("https://www.x.com")}
+            onClick={() =>
+              util.openLink(
+                "https://x.com/Aibullsio?t=QgDntFSRp7-hQo8NXdgWyA&s=09"
+              )
+            }
           >
             Twitter
           </Caption>
           <Caption
             level="1"
             weight="3"
-            onClick={() => util.openLink("https://www.telegram.com")}
+            onClick={() => util.openLink("https://t.me/+6-qJa49qw2BhNDI1")}
           >
             Telegram
           </Caption>
