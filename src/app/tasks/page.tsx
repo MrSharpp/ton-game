@@ -181,7 +181,8 @@ function TaskPage() {
                 setEndTime(dayjs().add(1, "minutes"));
                 setStreaks(streaks + 1);
                 const mappedTasks = tasks.map((item, i) => {
-                  return { ...item, enabled: false };
+                  if (index == i) return { ...item, enabled: false };
+                  return item;
                 });
                 setTasks(mappedTasks);
                 await taskMutation.mutateAsync(index + 1);
