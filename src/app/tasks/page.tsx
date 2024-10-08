@@ -181,7 +181,6 @@ function TaskPage() {
 
                     if (index + 1 == userTasksQuery.data?.length) {
                       resetTasks();
-                      initTasks();
                     }
                     setEndTime(dayjs().add(5, "minutes"));
                   }}
@@ -204,7 +203,7 @@ function TaskPage() {
 
       <div>
         <Title weight="3" className="mt-8 mb-5">
-          Time streak Task: <b>{user?.taskStreaks}</b>
+          Time streak Task: <b>{user?.taskStreaks ?? 0}</b>
         </Title>
 
         <Title weight="3">
