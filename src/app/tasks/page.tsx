@@ -219,53 +219,41 @@ function TaskPage() {
 
         <div className="flex flex-col gap-3 mt-5 ml-5 mr-[60px]">
           <div className="flex justify-between">
-            <Headline
-              weight="3"
+            <Headline weight="3">X Account</Headline>
+
+            <button
+              style={{ backgroundColor: "white", color: "black" }}
+              className="px-2 rounded-lg"
               onClick={() =>
                 util.openLink(
                   "https://x.com/Aibullsio?t=QgDntFSRp7-hQo8NXdgWyA&s=09"
                 )
               }
             >
-              X Account
-            </Headline>
-
-            <button
-              style={{ backgroundColor: "white", color: "black" }}
-              className="px-2 rounded-lg"
-            >
               Join
             </button>
           </div>
 
           <div className="flex justify-between">
-            <Headline
-              weight="3"
+            <Headline weight="3">Instagram</Headline>
+            <button
+              style={{ backgroundColor: "white", color: "black" }}
+              className="px-2 rounded-lg"
               onClick={() =>
                 util.openLink(
                   "https://www.instagram.com/aibulls.io/profilecard/?igsh=MThhM3VoampqbXZi"
                 )
               }
             >
-              Instagram
-            </Headline>
-            <button
-              style={{ backgroundColor: "white", color: "black" }}
-              className="px-2 rounded-lg"
-            >
               Join
             </button>
           </div>
           <div className="flex justify-between">
-            <Headline
-              weight="3"
-              onClick={() => util.openLink("https://t.me/+6-qJa49qw2BhNDI1")}
-            >
-              Telegram
-            </Headline>
+            <Headline weight="3">Telegram</Headline>
             <button
               style={{ backgroundColor: "white", color: "black" }}
               className="px-2 rounded-lg"
+              onClick={() => util.openLink("https://t.me/+6-qJa49qw2BhNDI1")}
             >
               Join
             </button>
