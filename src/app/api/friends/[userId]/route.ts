@@ -2,7 +2,7 @@ import { prismaClient } from "@/db/prisma-client";
 import { NextResponse } from "next/server";
 
 export async function GET(request: Request, { params }: any) {
-  const friens = await prismaClient.friend.findMany({
+  const friends = await prismaClient.friend.findMany({
     where: {
       User: {
         Id: +params.userId,
@@ -13,5 +13,5 @@ export async function GET(request: Request, { params }: any) {
     },
   });
 
-  return NextResponse.json(friens);
+  return NextResponse.json(friends);
 }

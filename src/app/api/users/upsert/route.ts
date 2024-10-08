@@ -1,6 +1,10 @@
 import { prismaClient } from "@/db/prisma-client";
 import { NextRequest, NextResponse } from "next/server";
 
+BigInt.prototype.toJSON = function () {
+  return this.toString();
+};
+
 export async function POST(request: NextRequest) {
   const body = JSON.parse(await request.text());
   const referId = request.nextUrl.searchParams.get("referId");

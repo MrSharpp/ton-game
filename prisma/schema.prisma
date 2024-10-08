@@ -20,7 +20,7 @@ model User {
   taskStartTime DateTime @default(now())
   taskStreaks   Int      @default(0)
   friendStreaks Int      @default(0)
-  tgId          Int      @unique
+  tgId          BigInt   @unique
   username      String   @unique
 
   transactionDone   Boolean   @default(false)
