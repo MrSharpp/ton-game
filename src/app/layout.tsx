@@ -19,7 +19,10 @@ export default function RootLayout({ children }: Readonly<PropsWithChildren>) {
         <QueryClientProvider client={queryClient}>
           <Root>
             <UserProvider>
-              <div className="h-screen flex flex-col bg-black text-white">
+              <div
+                className="h-screen flex flex-col text-white "
+                style={{ background: "url(/bg.png" }}
+              >
                 <div
                   style={{
                     height: "100vh",
