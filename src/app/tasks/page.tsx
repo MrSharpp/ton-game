@@ -198,7 +198,7 @@ function TaskPage() {
                 }
               }}
             >
-              Claim {index + 1}
+              {item.completeTime ? "Claimed" : `Claim ${index + 1}`}
             </button>
           </div>
         ))}
