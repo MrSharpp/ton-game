@@ -87,7 +87,7 @@ export default function Home() {
         )}
       </div>
 
-      <div className="mt-5 px-5">
+      <div className="mt-5 pr-5">
         <ul className="list-disc pl-10">
           <li className="text-base font-light text-left">
             An airdrop is the distribution of tokens to players wallets. These
