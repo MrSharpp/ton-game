@@ -76,13 +76,6 @@ function TaskPage() {
     .duration((endTime.unix() - dayjs().unix()) * 1000)
     .asSeconds();
 
-  console.log(
-    "time left:",
-    timeLeft,
-    dayjs(user?.lastTaskCompleted).tz("Asia/Kolkata").toDate(),
-    endTime.tz("Asia/Kolkata").toDate()
-  );
-
   useEffect(() => {
     const endTime = dayjs(user?.lastTaskCompleted).add(5, "minutes");
     setEndTime(endTime);
@@ -202,7 +195,7 @@ function TaskPage() {
       </div>
       <Title weight="3">Time streak Task: {user?.taskStreaks}</Title>
 
-      <Title weight="3">Fren streak Task: {user?.friendStreaks}</Title>
+      <Title weight="3">Friend streak Task: {user?.friendStreaks ?? 0}</Title>
 
       <Title weight="3">
         Time Left: <Countdown endTime={endTime} />
