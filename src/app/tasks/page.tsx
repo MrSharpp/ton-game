@@ -160,39 +160,35 @@ function TaskPage() {
         Tasks
       </h1>
 
-      <div className="grid grid-cols-2  gap-2 mb-2">
+      <div className="grid grid-cols-3  gap-2 mb-2">
         {tasks.map((item: Task, index) => (
           <div key={item.Id}>
-            <Cell
-              Component={"label"}
-              before={
-                <Checkbox
-                  name="check"
-                  className="checkbox"
-                  onChange={async (e) => {
-                    e.target.disabled = true;
-                    await taskMutation.mutate(index + 1);
-                    setStreaks(streaks + 1);
-                    await userTasksQuery.refetch();
-                    setUser({
-                      ...user,
-                      taskStreaks: (user?.taskStreaks || 0) + 1,
-                      lastTaskCompleted: new Date(),
-                    });
+            <button
+              className="px-10  text-black rounded-xl py-2"
+              style={{
+                backgroundColor: !!item.Id || !item.enabled ? "gray" : "white",
+              }}
+              onClick={async (e) => {
+                e.target.disabled = true;
+                await taskMutation.mutate(index + 1);
+                setStreaks(streaks + 1);
+                await userTasksQuery.refetch();
+                setUser({
+                  ...user,
+                  taskStreaks: (user?.taskStreaks || 0) + 1,
+                  lastTaskCompleted: new Date(),
+                });
 
-                    if (index + 1 == userTasksQuery.data?.length) {
-                      await resetTasks();
-                    }
-                    setEndTime(dayjs().add(1, "minutes"));
-                  }}
-                  defaultChecked={!!item.Id}
-                  disabled={!item.enabled || !!item.Id}
-                />
-              }
-              className="rounded-md border border-green-600"
+                if (index + 1 == userTasksQuery.data?.length) {
+                  await resetTasks();
+                }
+                setEndTime(dayjs().add(1, "minutes"));
+              }}
+              defaultChecked={!!item.Id}
+              disabled={!item.enabled || !!item.Id}
             >
               #{index + 1}
-            </Cell>
+            </button>
           </div>
         ))}
       </div>
