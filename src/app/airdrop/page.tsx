@@ -104,8 +104,8 @@ export default function Home() {
         </ul>
       </div>
 
-      <div className="pt-8 flex justify-center absolute bottom-0 right-4">
-        <Button Component={Link} href="/airdrop/roadmap">
+      <div className="pt-8 flex justify-center absolute bottom-4 right-4">
+        <Button Component={Link} size="s" href="/airdrop/roadmap">
           View Roadmap
         </Button>
       </div>
