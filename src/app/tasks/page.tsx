@@ -179,6 +179,7 @@ function TaskPage() {
 
                     if (index + 1 == userTasksQuery.data?.length) {
                       resetTasks();
+                      initTasks();
                     }
                     setEndTime(dayjs().add(5, "minutes"));
                   }}
