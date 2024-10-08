@@ -1,13 +1,7 @@
 "use client";
 
 import { useUser } from "@/hooks/useUser";
-import {
-  Button,
-  Caption,
-  LargeTitle,
-  Subheadline,
-  Text,
-} from "@telegram-apps/telegram-ui";
+import { Button, Caption, Subheadline } from "@telegram-apps/telegram-ui";
 import {
   TonConnectButton,
   useTonConnectUI,
@@ -16,8 +10,8 @@ import {
 
 export default function Home() {
   const wallet = useTonWallet();
-  const [tonConnectUI, setOptions] = useTonConnectUI();
-  const { user, setUser, fetchUser } = useUser();
+  const [tonConnectUI] = useTonConnectUI();
+  const { user, fetchUser } = useUser();
 
   async function completeTransaction() {
     return fetch(`/api/users/${user?.Id}/complete-transaction`, {
@@ -92,19 +86,17 @@ export default function Home() {
       </div>
 
       <div className="mt-5 px-5">
-        <ul>
-          <li>
-            <Caption weight="3" level="1">
-              An airdrop is the distribution of tokens to players wallets. These
-              tokens will be traded on top exchanges, and you can either sell or
-              hold them. Toreceive your tokens, you must complete the two tasks
-              above.
-            </Caption>
+        <ul className="list-disc pl-10">
+          <li className="text-base font-light text-left">
+            An airdrop is the distribution of tokens to players wallets. These
+            tokens will be traded on top exchanges, and you can either sell or
+            hold them.
           </li>
-          <li>
-            <Caption weight="3" level="1">
-              Airdrop date will be announed soon in our telegram channel.
-            </Caption>
+          <li className="text-base font-light text-left">
+            To receive your tokens, you must complete the two tasks above.
+          </li>
+          <li className="text-base font-light text-left">
+            Airdrop date will be announced soon in our telegram channel.
           </li>
         </ul>
       </div>

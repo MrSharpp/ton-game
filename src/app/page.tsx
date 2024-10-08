@@ -1,8 +1,5 @@
 "use client";
 
-import { useUtils } from "@telegram-apps/sdk-react";
-import { Caption, Subheadline } from "@telegram-apps/telegram-ui";
-
 export default function Home() {
   return (
     <video

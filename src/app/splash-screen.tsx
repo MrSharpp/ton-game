@@ -1,7 +1,7 @@
-import { useEffect, useRef } from "react";
+import { ElementRef, useEffect, useRef } from "react";
 
 export function SplashScreen({ path }: { path: string }) {
-  const videoRef = useRef(null);
+  const videoRef = useRef<ElementRef<"video">>(null);
 
   useEffect(() => {
     const video = videoRef.current;
@@ -15,12 +15,17 @@ export function SplashScreen({ path }: { path: string }) {
         console.warn("Autoplay failed:", error);
       }
 
-      if (video.requestFullscreen) {
-        video.requestFullscreen();
-      } else if (video.webkitRequestFullscreen) {
-        video.webkitRequestFullscreen();
-      } else if (video.mozRequestFullScreen) {
-        video.mozRequestFullScreen();
+      try {
+        if (video.requestFullscreen) {
+          video.requestFullscreen();
+        } else if (video?.webkitRequestFullscreen) {
+          video.webkitRequestFullscreen();
+        } else if (video.mozRequestFullScreen) {
+          video.mozRequestFullScreen();
+        }
+      } catch (error) {
+        // If fullscreen permission is denied, then do nothing
+        console.log("DENIED Fullscreen permission");
       }
     }
   }, []);
