@@ -38,6 +38,7 @@ export function SplashScreen({ path }: { path: string }) {
         playsInline
         muted
         autoPlay
+        controls={false}
         className="w-full h-screen object-cover"
       >
         <source src={path} type="video/mp4" />

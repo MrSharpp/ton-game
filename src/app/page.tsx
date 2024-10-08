@@ -7,6 +7,7 @@ export default function Home() {
       playsInline
       muted
       autoPlay
+      controls={false}
       className="h-full w-full h-inherit object-cover"
     >
       <source src={"/splash.mp4"} type="video/mp4" />
