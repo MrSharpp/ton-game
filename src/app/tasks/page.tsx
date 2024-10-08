@@ -178,7 +178,7 @@ function TaskPage() {
                 e.target.disabled = true;
                 if (!!item.Id || !item.enabled) return false;
 
-                await taskMutation.mutate(index + 1);
+                await taskMutation.mutateAsync(index + 1);
                 setStreaks(streaks + 1);
                 await userTasksQuery.refetch();
                 setUser({
