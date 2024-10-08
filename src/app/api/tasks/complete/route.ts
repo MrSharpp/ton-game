@@ -23,7 +23,7 @@ export async function POST(request: Request) {
 
   await prismaClient.user.update({
     where: { Id: body.userId },
-    data: { taskStreaks: { increment: 1 } },
+    data: { taskStreaks: { increment: 1 }, lastTaskCompleted: new Date() },
   });
 
   return Response.json(null);
