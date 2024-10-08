@@ -199,7 +199,7 @@ function TaskPage() {
         </Caption>
       </div>
 
-      <Title weight="3" className="mt-10">
+      <Title weight="3" className="mt-10 mb-5">
         Time streak Task: {user?.taskStreaks}
       </Title>
 
