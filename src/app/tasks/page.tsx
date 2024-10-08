@@ -1,7 +1,7 @@
 "use client";
 import { useUser } from "@/hooks/useUser";
 import { useMutation, useQuery } from "@tanstack/react-query";
-import { useLaunchParams, useUtils } from "@telegram-apps/sdk-react";
+import { date, useLaunchParams, useUtils } from "@telegram-apps/sdk-react";
 import {
   Caption,
   Cell,
@@ -13,11 +13,17 @@ import {
 import dayjs, { Dayjs } from "dayjs";
 import timezone from "dayjs/plugin/timezone";
 import utc from "dayjs/plugin/utc";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { COUNT_OF_TASKS } from "../constants";
+import useCountDown from "react-countdown-hook";
+import duration, { Duration } from "dayjs/plugin/duration";
+
+dayjs.extend(duration);
 
 dayjs.extend(utc);
 dayjs.extend(timezone);
+
+const interval = 1000; // interval to change remaining time amount, defaults to 1000
 
 type Task = { toComplete: boolean; Id: number };
 const tz = dayjs.tz.guess();
@@ -33,6 +39,21 @@ function TaskPage() {
   const [streaks, setStreaks] = useState(user?.taskStreaks ?? 0);
   const util = useUtils();
   const [tasks, setTasks] = useState<Task[]>([]);
+  const initialTime = dayjs().diff(
+    dayjs(user?.lastTaskCompleted || user?.taskStartTime),
+    "milliseconds"
+  );
+  console.log(initialTime);
+
+  const [timeLeft, { start, pause, resume, reset }] = useCountDown(
+    initialTime,
+    interval
+  );
+
+  useEffect(() => {
+    reset();
+    start();
+  }, []);
 
   const userTasksQuery = useQuery({
     queryFn: () => fetch(`/api/tasks/${userID}`).then((res) => res.json()),
@@ -98,6 +119,15 @@ function TaskPage() {
     return false;
   }
 
+  const remainingTime = useMemo(() => {
+    const time = dayjs.duration(timeLeft);
+    const Seconds = Math.trunc(time.seconds());
+    const Minutes = Math.trunc(time.minutes());
+    const Hours = Math.trunc(time.hours());
+
+    return `${Hours}:${Minutes}:${Seconds}`;
+  }, [timeLeft]);
+
   return (
     <div className="h-full relative px-5">
       <h1 className="p-5 sticky top-0 z-50 backdrop-blur-lg font-bold text-xl">
@@ -121,11 +151,13 @@ function TaskPage() {
                     setUser({
                       ...user,
                       taskStreaks: (user?.taskStreaks || 0) + 1,
+                      lastTaskCompleted: new Date(),
                     });
 
                     if (index + 1 == userTasksQuery.data?.length) {
                       resetTasks();
                     }
+                    start();
                   }}
                   defaultChecked={!item.toComplete}
                   disabled={!item.enabled}
@@ -141,6 +173,8 @@ function TaskPage() {
       <Title weight="3">Time streak Task: {user?.taskStreaks}</Title>
 
       <Title weight="3">Fren streak Task: {user?.friendStreaks}</Title>
+
+      <Title weight="3">Time Left: {remainingTime}</Title>
 
       <div className="mt-10">
         <Subheadline level="1" weight="3">
