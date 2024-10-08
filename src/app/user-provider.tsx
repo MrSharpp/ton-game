@@ -1,4 +1,9 @@
-import { useLaunchParams } from "@telegram-apps/sdk-react";
+import {
+  useInitData,
+  useLaunchParams,
+  useMiniApp,
+  useUtils,
+} from "@telegram-apps/sdk-react";
 import React, { useContext, useEffect, useState } from "react";
 import { SplashScreen } from "./splash-screen";
 
@@ -26,7 +31,12 @@ export function UserProvider({ children }: any) {
 
   const startParam = useLaunchParams().startParam;
 
-  console.log({ startParam: useLaunchParams() });
+  console.log({
+    startParam: useLaunchParams(),
+    initData: useInitData(),
+    ma: useMiniApp(),
+    utils: useUtils(),
+  });
 
   function fetchUser() {
     return fetch(`/api/users/upsert?referId=${startParam}`, {
