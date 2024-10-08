@@ -25,6 +25,11 @@ export async function POST(request: NextRequest) {
         User: { connect: { Id: +referId } },
       },
     });
+
+    await prismaClient.user.update({
+      where: { Id: +referId },
+      data: { friendStreaks: { increment: 1 } },
+    });
   }
 
   return NextResponse.json(user, { status: 201 });
