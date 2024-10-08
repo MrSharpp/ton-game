@@ -29,7 +29,7 @@ function debugDayjs(day: Dayjs, text?: string) {
 
 function TaskPage() {
   const userID = useLaunchParams().initData?.user?.id;
-  const { user, fetchUser } = useUser();
+  const { user, fetchUser, setUser } = useUser();
   const [streaks, setStreaks] = useState(user?.taskStreaks ?? 0);
   const util = useUtils();
   const [tasks, setTasks] = useState<Task[]>([]);
@@ -77,6 +77,12 @@ function TaskPage() {
   }
 
   function shouldTaskBeEnabled(task: any, index: number) {
+    if (
+      index == 0 &&
+      dayjs().isBefore(dayjs(user?.lastTaskCompleted).add(5, "minutes"))
+    )
+      return false;
+
     const prevTask = (userTasksQuery.data || [])[index - 1];
 
     if (!prevTask && !task.completeTime) return true;
@@ -112,6 +118,10 @@ function TaskPage() {
                     taskMutation.mutate(index + 1);
                     setStreaks(streaks + 1);
                     userTasksQuery.refetch();
+                    setUser({
+                      ...user,
+                      taskStreaks: (user?.taskStreaks || 0) + 1,
+                    });
 
                     if (index + 1 == userTasksQuery.data?.length) {
                       resetTasks();

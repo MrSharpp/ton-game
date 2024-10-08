@@ -8,6 +8,7 @@ type User = {
   taskStartTime: Date;
   friendStreaks: number;
   transactionDone: boolean;
+  lastTaskCompleted: Date;
 };
 
 export const UserContext = React.createContext<{
