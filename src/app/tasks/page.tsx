@@ -142,13 +142,13 @@ function TaskPage() {
   });
 
   function resetTasks() {
+    setTasks([]);
     fetch(`/api/tasks/reset`, {
       body: JSON.stringify({
         userId: user?.Id,
       }),
       method: "POST",
     }).then(async () => {
-      setTasks([]);
       await fetchUser();
       userTasksQuery.refetch();
     });
