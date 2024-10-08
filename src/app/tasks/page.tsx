@@ -108,6 +108,11 @@ function TaskPage() {
       let enabled = false;
       if (taskEnabled) return item;
 
+      if (index == 0 && !user?.lastTaskCompleted) {
+        enabled = true;
+        taskEnabled = true;
+      }
+
       if (index == 0 && user?.lastTaskCompleted && timeLeft < 1 && !item.Id) {
         enabled = true;
         taskEnabled = true;
@@ -187,7 +192,7 @@ function TaskPage() {
               defaultChecked={!!item.Id}
               disabled={!item.enabled || !!item.Id}
             >
-              #{index + 1}
+              Claim {index + 1}
             </button>
           </div>
         ))}
