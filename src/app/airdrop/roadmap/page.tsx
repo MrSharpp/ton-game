@@ -15,7 +15,7 @@ function RoadMap({}: Props) {
 
           <ul className="list-disc px-5">
             <li>Building Community</li>
-            <li>Allocation eligibility task</li>
+            <li>Allocation eligibility tasks</li>
           </ul>
         </section>
 
