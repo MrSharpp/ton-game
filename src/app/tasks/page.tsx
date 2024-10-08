@@ -169,9 +169,10 @@ function TaskPage() {
         {tasks.map((item: Task, index) => (
           <div key={item.Id}>
             <button
-              className="px-10  text-black rounded-xl py-2"
+              className="px-5  text-black rounded-xl py-2"
               style={{
                 backgroundColor: !!item.Id || !item.enabled ? "gray" : "white",
+                fontSize: 15,
               }}
               onClick={async (e) => {
                 e.target.disabled = true;
@@ -189,8 +190,6 @@ function TaskPage() {
                 }
                 setEndTime(dayjs().add(1, "minutes"));
               }}
-              defaultChecked={!!item.Id}
-              disabled={!item.enabled || !!item.Id}
             >
               Claim {index + 1}
             </button>
