@@ -32,10 +32,10 @@ model User {
 }
 
 model Friend {
-  User   User @relation("UserRelation", fields: [userId], references: [Id])
+  User   User @relation("UserRelation", fields: [userId], references: [Id], onDelete: Cascade)
   userId Int
 
-  Friend   User @relation("FriendRelation", fields: [friendId], references: [Id])
+  Friend   User @relation("FriendRelation", fields: [friendId], references: [Id], onDelete: Cascade)
   friendId Int
 
   @@id([userId, friendId])
@@ -44,7 +44,7 @@ model Friend {
 model Task {
   Id Int @id @default(autoincrement())
 
-  User   User @relation(fields: [userId], references: [Id])
+  User   User @relation(fields: [userId], references: [Id], onDelete: Cascade)
   userId Int
 
   taskIndex Int
