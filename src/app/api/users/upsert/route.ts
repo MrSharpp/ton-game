@@ -19,6 +19,7 @@ export async function POST(request: NextRequest) {
       lastName: body.lastName,
       tgId: body.id,
       username: body.username,
+      refererId: referId,
     },
   });
 

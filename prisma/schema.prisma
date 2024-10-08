@@ -22,6 +22,7 @@ model User {
   friendStreaks Int      @default(0)
   tgId          BigInt   @unique
   username      String   @unique
+  refererId     String?
 
   transactionDone   Boolean   @default(false)
   lastTaskCompleted DateTime?
