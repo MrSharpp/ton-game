@@ -184,9 +184,9 @@ function TaskPage() {
                   return item;
                 });
                 setTasks(mappedTasks);
+                setEndTime(dayjs().add(1, "minutes"));
                 await taskMutation.mutateAsync(index + 1);
                 setStreaks(streaks + 1);
-                await userTasksQuery.refetch();
                 setUser({
                   ...user,
                   taskStreaks: (user?.taskStreaks || 0) + 1,
@@ -196,7 +196,6 @@ function TaskPage() {
                 if (index + 1 == userTasksQuery.data?.length) {
                   await resetTasks();
                 }
-                setEndTime(dayjs().add(1, "minutes"));
               }}
             >
               Claim {index + 1}
