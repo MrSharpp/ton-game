@@ -199,20 +199,20 @@ function TaskPage() {
         </Caption>
       </div>
 
-      <Title weight="3" className="mt-10 mb-5">
+      <Title weight="3" className="mt-8 mb-5">
         Time streak Task: {user?.taskStreaks}
       </Title>
 
       <Title weight="3">Friend streak Task: {user?.friendStreaks ?? 0}</Title>
 
-      <div className="mt-10 ">
+      <div className="mt-8 ">
         <Subheadline level="1" weight="3" className="text-center">
           {"->"} Social Tasks
         </Subheadline>
 
-        <div className="flex flex-col">
+        <div className="flex flex-col gap-1">
           <Caption
-            level="1"
+            level="2"
             weight="3"
             onClick={() =>
               util.openLink(
