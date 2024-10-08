@@ -14,7 +14,7 @@ export default function Page() {
 
   function referFriend() {
     const encodedUrl = encodeURIComponent(
-      `https://t.me/${BOT_USERNAME}?startapp=${user?.Id || ""}`
+      `https://t.me/shahzar_2024_bot/AiBull?startapp=${user?.Id || ""}`
       // `https://t.me/owoelawnbot/mybot?startapp=${user?.Id || ""}`
     );
     utils.openTelegramLink(
