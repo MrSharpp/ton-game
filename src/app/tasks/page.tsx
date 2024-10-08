@@ -50,7 +50,6 @@ export const Countdown: React.FC<any> = ({ endTime, cb }) => {
       );
 
       if (duration.asMilliseconds() < 1) {
-        cb();
         return setTime(`0h 0m 0s`);
       }
 
@@ -113,7 +112,11 @@ function TaskPage() {
     const mappedTasks = userTasksQuery.data.map((item, index) => {
       let enabled = false;
       if (taskEnabled) return item;
-      console.log(index, timeLeft);
+
+      if (index == 0) {
+        if (user?.lastTaskCompleted && timeLeft < 1) enabled = true;
+        if (!user?.lastTaskCompleted) enabled = true;
+      }
 
       if (timeLeft < 1 && !item.Id) {
         enabled = true;
