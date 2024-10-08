@@ -211,7 +211,7 @@ function TaskPage() {
         </Title>
       </div>
 
-      <div className="mt-8 ">
+      <div className="mt-8 bottom-0">
         <Subheadline level="1" weight="3" className="text-center">
           {"->"} Social Tasks
         </Subheadline>
