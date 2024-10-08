@@ -47,7 +47,12 @@ export default function Page() {
         {(friendsQuery.data || []).map((item) => (
           <Cell
             key={item.Id}
-            after={<div>Task Streaks: {item.Friend.taskStreaks}</div>}
+            after={
+              <div>
+                Task/Friend Streaks: {item.Friend.taskStreaks} -{" "}
+                {item.Friend.friendStreaks}
+              </div>
+            }
           >
             {item.Friend.firstName} {item.Friend.lastName}
           </Cell>

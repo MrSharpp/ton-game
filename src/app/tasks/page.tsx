@@ -169,14 +169,23 @@ function TaskPage() {
         {tasks.map((item: Task, index) => (
           <div key={item.Id}>
             <button
-              className="px-10  text-black rounded-xl py-2"
+              className="px-5  text-black rounded-xl py-2"
               style={{
                 backgroundColor: !!item.Id || !item.enabled ? "gray" : "white",
+                fontSize: 15,
               }}
               onClick={async (e) => {
-                e.target.disabled = true;
-                await taskMutation.mutate(index + 1);
+                console.log(item);
+
+                if (!!item.Id || !item.enabled) return false;
+
+                await taskMutation.mutateAsync(index + 1);
                 setStreaks(streaks + 1);
+                const mappedTasks = tasks.map((item, i) => {
+                  if (index == i) return { ...item, enabled: false };
+                  return item;
+                });
+                setTasks(mappedTasks);
                 await userTasksQuery.refetch();
                 setUser({
                   ...user,
@@ -189,8 +198,6 @@ function TaskPage() {
                 }
                 setEndTime(dayjs().add(1, "minutes"));
               }}
-              defaultChecked={!!item.Id}
-              disabled={!item.enabled || !!item.Id}
             >
               Claim {index + 1}
             </button>
