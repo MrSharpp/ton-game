@@ -33,27 +33,66 @@ function debugDayjs(day: Dayjs, text?: string) {
   console.log(text, day.tz(tz).format(format));
 }
 
+export const Countdown: React.FC<any> = ({ endTime, cb }) => {
+  const [time, setTime] = useState<string>();
+
+  useEffect(() => {
+    const currentTime = dayjs();
+    const diffTime = endTime.unix() - currentTime.unix();
+
+    let duration = dayjs.duration(diffTime * 1000, "milliseconds");
+    const interval = 1000;
+
+    const id = setInterval(function () {
+      duration = dayjs.duration(
+        duration.asMilliseconds() - interval,
+        "milliseconds"
+      );
+
+      if (duration.asMilliseconds() < 1 && cb) {
+        cb();
+        return setTime(`0h 0m 0s`);
+      }
+
+      let timestamp = `${duration.hours()}h ${duration.minutes()}m ${duration.seconds()}s`;
+      setTime(timestamp);
+    }, interval);
+
+    return () => clearInterval(id);
+  }, [endTime]);
+
+  return <>{time}</>;
+};
+
 function TaskPage() {
   const userID = useLaunchParams().initData?.user?.id;
   const { user, fetchUser, setUser } = useUser();
   const [streaks, setStreaks] = useState(user?.taskStreaks ?? 0);
   const util = useUtils();
   const [tasks, setTasks] = useState<Task[]>([]);
-  const initialTime = dayjs().diff(
-    dayjs(user?.lastTaskCompleted || user?.taskStartTime),
-    "milliseconds"
+  const [endTime, setEndTime] = useState(
+    dayjs(user?.lastTaskCompleted).add(5, "minutes")
   );
-  console.log(initialTime);
+  const timeLeft = dayjs
+    .duration((endTime.unix() - dayjs().unix()) * 1000)
+    .asSeconds();
 
-  const [timeLeft, { start, pause, resume, reset }] = useCountDown(
-    initialTime,
-    interval
+  console.log(
+    "time left:",
+    timeLeft,
+    dayjs(user?.lastTaskCompleted).tz("Asia/Kolkata").toDate(),
+    endTime.tz("Asia/Kolkata").toDate()
   );
 
   useEffect(() => {
-    reset();
-    start();
-  }, []);
+    const endTime = dayjs(user?.lastTaskCompleted).add(5, "minutes");
+    setEndTime(endTime);
+    const id = setTimeout(() => {
+      initTasks();
+    }, timeLeft * 1000);
+
+    return () => clearTimeout(id);
+  }, [user?.lastTaskCompleted]);
 
   const userTasksQuery = useQuery({
     queryFn: () => fetch(`/api/tasks/${userID}`).then((res) => res.json()),
@@ -61,21 +100,40 @@ function TaskPage() {
     placeholderData: [],
     select(data) {
       let items = new Array(COUNT_OF_TASKS)
-        .fill({ toComplete: true })
+        .fill({ enabled: false })
         .map((item, index) => data[index] || item);
       return items;
     },
   });
 
-  useEffect(() => {
-    if (userTasksQuery.data) {
-      const mappedTasks = userTasksQuery.data.map((item, index) => ({
+  function initTasks() {
+    if (!userTasksQuery.data?.length) return;
+
+    let taskEnabled = false;
+    const mappedTasks = userTasksQuery.data.map((item, index) => {
+      let enabled = false;
+      if (taskEnabled) return item;
+      console.log(index, timeLeft);
+
+      if (timeLeft < 1 && !item.Id) {
+        enabled = true;
+        taskEnabled = true;
+      }
+
+      return {
         ...item,
-        enabled: shouldTaskBeEnabled(item, index),
-      }));
-      setTasks(mappedTasks);
-    }
+        enabled,
+      };
+    });
+
+    setTasks(mappedTasks);
+  }
+
+  useEffect(() => {
+    initTasks();
   }, [userTasksQuery.data]);
+
+  console.log(tasks);
 
   const taskMutation = useMutation({
     mutationFn: (hour: number) =>
@@ -96,37 +154,6 @@ function TaskPage() {
       userTasksQuery.refetch();
     });
   }
-
-  function shouldTaskBeEnabled(task: any, index: number) {
-    if (
-      index == 0 &&
-      dayjs().isBefore(dayjs(user?.lastTaskCompleted).add(5, "minutes"))
-    )
-      return false;
-
-    const prevTask = (userTasksQuery.data || [])[index - 1];
-
-    if (!prevTask && !task.completeTime) return true;
-
-    const newTaskElapsedTimePassed = dayjs().isAfter(
-      dayjs(prevTask?.completeTime).add(5, "minutes")
-    );
-
-    if (prevTask?.toComplete && newTaskElapsedTimePassed) return false;
-
-    if (newTaskElapsedTimePassed && !task.completeTime) return true;
-
-    return false;
-  }
-
-  const remainingTime = useMemo(() => {
-    const time = dayjs.duration(timeLeft);
-    const Seconds = Math.trunc(time.seconds());
-    const Minutes = Math.trunc(time.minutes());
-    const Hours = Math.trunc(time.hours());
-
-    return `${Hours}:${Minutes}:${Seconds}`;
-  }, [timeLeft]);
 
   return (
     <div className="h-full relative px-5">
@@ -157,10 +184,10 @@ function TaskPage() {
                     if (index + 1 == userTasksQuery.data?.length) {
                       resetTasks();
                     }
-                    start();
+                    setEndTime(dayjs().add(5, "minutes"));
                   }}
-                  defaultChecked={!item.toComplete}
-                  disabled={!item.enabled}
+                  defaultChecked={!!item.Id}
+                  disabled={!item.enabled || !!item.Id}
                 />
               }
               className="rounded-md border border-green-600"
@@ -174,7 +201,9 @@ function TaskPage() {
 
       <Title weight="3">Fren streak Task: {user?.friendStreaks}</Title>
 
-      <Title weight="3">Time Left: {remainingTime}</Title>
+      <Title weight="3">
+        Time Left: <Countdown endTime={endTime} />
+      </Title>
 
       <div className="mt-10">
         <Subheadline level="1" weight="3">
