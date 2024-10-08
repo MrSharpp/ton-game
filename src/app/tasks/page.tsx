@@ -175,7 +175,8 @@ function TaskPage() {
                 fontSize: 15,
               }}
               onClick={async (e) => {
-                e.target.disabled = true;
+                console.log(item);
+
                 if (!!item.Id || !item.enabled) return false;
 
                 await taskMutation.mutateAsync(index + 1);
