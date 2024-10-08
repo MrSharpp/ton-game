@@ -157,7 +157,7 @@ function TaskPage() {
         Tasks
       </h1>
 
-      <div className="grid grid-cols-2  pb-8 gap-2 ">
+      <div className="grid grid-cols-2  gap-2 mb-2">
         {tasks.map((item: Task, index) => (
           <div key={item.Id}>
             <Cell
@@ -193,13 +193,17 @@ function TaskPage() {
           </div>
         ))}
       </div>
-      <Title weight="3">Time streak Task: {user?.taskStreaks}</Title>
+      <div className="text-center">
+        <Caption weight="3">
+          Next Task In: <Countdown endTime={endTime} />
+        </Caption>
+      </div>
+
+      <Title weight="3" className="mt-10">
+        Time streak Task: {user?.taskStreaks}
+      </Title>
 
       <Title weight="3">Friend streak Task: {user?.friendStreaks ?? 0}</Title>
-
-      <Title weight="3">
-        Time Left: <Countdown endTime={endTime} />
-      </Title>
 
       <div className="mt-10">
         <Subheadline level="1" weight="3">
