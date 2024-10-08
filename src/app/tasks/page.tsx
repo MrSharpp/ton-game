@@ -196,15 +196,17 @@ function TaskPage() {
       </div>
       <div className="text-center">
         <Caption weight="3">
-          Next Task In: <Countdown endTime={endTime} />
+          <b>Unlock</b> Time Left: <Countdown endTime={endTime} />
         </Caption>
       </div>
 
-      <Title weight="3" className="mt-8 mb-5">
-        Time streak Task: {user?.taskStreaks}
-      </Title>
+      <div className="text-center">
+        <Title weight="3" className="mt-8 mb-5">
+          Time streak Task: {user?.taskStreaks}
+        </Title>
 
-      <Title weight="3">Friend streak Task: {user?.friendStreaks ?? 0}</Title>
+        <Title weight="3">Friend streak Task: {user?.friendStreaks ?? 0}</Title>
+      </div>
 
       <div className="mt-8 ">
         <Subheadline level="1" weight="3" className="text-center">
