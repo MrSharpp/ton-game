@@ -50,6 +50,7 @@ export default function Home() {
         flexDirection: "column",
         alignItems: "center",
       }}
+      className="relative"
     >
       <div className="mb-5">
         <h1 className="text-3xl font-bold">Airdrop</h1>
@@ -103,7 +104,7 @@ export default function Home() {
         </ul>
       </div>
 
-      <div className="pt-8 flex justify-center">
+      <div className="pt-8 flex justify-center absolute bottom-0 right-4">
         <Button Component={Link} href="/airdrop/roadmap">
           View Roadmap
         </Button>
