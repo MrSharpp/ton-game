@@ -3,9 +3,11 @@ import { useUser } from "@/hooks/useUser";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { date, useLaunchParams, useUtils } from "@telegram-apps/sdk-react";
 import {
+  Button,
   Caption,
   Cell,
   Checkbox,
+  Headline,
   LargeTitle,
   Subheadline,
   Title,
@@ -140,6 +142,7 @@ function TaskPage() {
   });
 
   function resetTasks() {
+    setTasks([]);
     fetch(`/api/tasks/reset`, {
       body: JSON.stringify({
         userId: user?.Id,
@@ -179,7 +182,6 @@ function TaskPage() {
 
                     if (index + 1 == userTasksQuery.data?.length) {
                       resetTasks();
-                      initTasks();
                     }
                     setEndTime(dayjs().add(5, "minutes"));
                   }}
@@ -200,49 +202,62 @@ function TaskPage() {
         </Caption>
       </div>
 
-      <div className="text-center">
+      <div>
         <Title weight="3" className="mt-8 mb-5">
-          Time streak Task: {user?.taskStreaks}
+          Time streak Task: <b>{user?.taskStreaks ?? 0}</b>
         </Title>
 
-        <Title weight="3">Friend streak Task: {user?.friendStreaks ?? 0}</Title>
+        <Title weight="3">
+          Friend streak Task: <b>{user?.friendStreaks ?? 0}</b>
+        </Title>
       </div>
 
-      <div className="mt-8 ">
+      <div className="mt-8 bottom-0">
         <Subheadline level="1" weight="3" className="text-center">
           {"->"} Social Tasks
         </Subheadline>
 
-        <div className="flex flex-col gap-1">
-          <Caption
-            level="2"
-            weight="3"
-            onClick={() =>
-              util.openLink(
-                "https://www.instagram.com/aibulls.io/profilecard/?igsh=MThhM3VoampqbXZi"
-              )
-            }
-          >
-            Instagram
-          </Caption>
-          <Caption
-            level="1"
-            weight="3"
-            onClick={() =>
-              util.openLink(
-                "https://x.com/Aibullsio?t=QgDntFSRp7-hQo8NXdgWyA&s=09"
-              )
-            }
-          >
-            Twitter
-          </Caption>
-          <Caption
-            level="1"
-            weight="3"
-            onClick={() => util.openLink("https://t.me/+6-qJa49qw2BhNDI1")}
-          >
-            Telegram
-          </Caption>
+        <div className="flex flex-col gap-3 mt-5 ml-5 mr-[60px]">
+          <div className="flex justify-between">
+            <Headline weight="3">X Account</Headline>
+
+            <button
+              style={{ backgroundColor: "white", color: "black" }}
+              className="px-2 rounded-lg"
+              onClick={() =>
+                util.openLink(
+                  "https://x.com/Aibullsio?t=QgDntFSRp7-hQo8NXdgWyA&s=09"
+                )
+              }
+            >
+              Join
+            </button>
+          </div>
+
+          <div className="flex justify-between">
+            <Headline weight="3">Instagram</Headline>
+            <button
+              style={{ backgroundColor: "white", color: "black" }}
+              className="px-2 rounded-lg"
+              onClick={() =>
+                util.openLink(
+                  "https://www.instagram.com/aibulls.io/profilecard/?igsh=MThhM3VoampqbXZi"
+                )
+              }
+            >
+              Join
+            </button>
+          </div>
+          <div className="flex justify-between">
+            <Headline weight="3">Telegram</Headline>
+            <button
+              style={{ backgroundColor: "white", color: "black" }}
+              className="px-2 rounded-lg"
+              onClick={() => util.openLink("https://t.me/+6-qJa49qw2BhNDI1")}
+            >
+              Join
+            </button>
+          </div>
         </div>
       </div>
     </div>
