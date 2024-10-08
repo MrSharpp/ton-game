@@ -21,8 +21,8 @@ export async function POST(request: NextRequest) {
   if (!!referId && !isNaN(+referId)) {
     await prismaClient.friend.create({
       data: {
-        Friend: { connect: { Id: +referId } },
-        User: { connect: { Id: user.Id } },
+        Friend: { connect: { Id: user.Id } },
+        User: { connect: { Id: +referId } },
       },
     });
   }
