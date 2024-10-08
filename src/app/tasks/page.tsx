@@ -175,18 +175,17 @@ function TaskPage() {
                 fontSize: 15,
               }}
               onClick={async (e) => {
-                console.log(item);
-
+                e.target.disabled = true;
                 if (!!item.Id || !item.enabled) return false;
 
+                setEndTime(dayjs().add(1, "minutes"));
+                setStreaks(streaks + 1);
                 const mappedTasks = tasks.map((item, i) => {
-                  if (index == i) return { ...item, enabled: false };
-                  return item;
+                  return { ...item, enabled: false };
                 });
                 setTasks(mappedTasks);
-                setEndTime(dayjs().add(1, "minutes"));
                 await taskMutation.mutateAsync(index + 1);
-                setStreaks(streaks + 1);
+                await userTasksQuery.refetch();
                 setUser({
                   ...user,
                   taskStreaks: (user?.taskStreaks || 0) + 1,
