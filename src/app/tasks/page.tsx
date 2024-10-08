@@ -180,6 +180,11 @@ function TaskPage() {
 
                 await taskMutation.mutateAsync(index + 1);
                 setStreaks(streaks + 1);
+                const mappedTasks = tasks.map((item, i) => {
+                  if (index == i) return { ...item, enabled: false };
+                  return item;
+                });
+                setTasks(mappedTasks);
                 await userTasksQuery.refetch();
                 setUser({
                   ...user,
