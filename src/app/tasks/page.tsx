@@ -213,7 +213,7 @@ function TaskPage() {
 
       <div>
         <Headline weight="3" className="mt-8 mb-5 flex justify-between">
-          Time streak Tasak:{" "}
+          Time streak Task:{" "}
           <b className="mr-10">{formatNumber(user?.taskStreaks ?? 0)}</b>
         </Headline>
 
