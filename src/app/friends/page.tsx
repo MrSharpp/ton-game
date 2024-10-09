@@ -6,6 +6,7 @@ import { useUtils } from "@telegram-apps/sdk-react";
 import { Button, Cell, List, Title } from "@telegram-apps/telegram-ui";
 import { BOT_USERNAME, SHARE_MESSAGE } from "../constants";
 import { formatNumber } from "@/utils/format-number";
+import { IconCopy } from "@tabler/icons-react";
 
 const arr = new Array(15).fill(0).map((_, i) => i);
 
@@ -49,7 +50,7 @@ export default function Page() {
               )
             }
           >
-            Copy Invite
+            <IconCopy stroke={2} />
           </Button>
         </div>
       </h1>
