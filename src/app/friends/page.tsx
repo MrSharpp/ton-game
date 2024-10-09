@@ -34,9 +34,11 @@ export default function Page() {
 
   return (
     <div>
-      <h1 className="p-5 sticky top-0 z-50 backdrop-blur-lg font-bold text-xl">
-        Friends
-        <div style={{ float: "right" }}>
+      <div className="flex align-center">
+        <h1 className="p-5 sticky top-0 z-50 backdrop-blur-lg font-bold text-xl">
+          Friends
+        </h1>
+        <div className="ml-auto mr-2 flex " style={{ alignItems: "center" }}>
           <Button size="s" onClick={() => referFriend()} className="mr-2">
             Refer A Friend
           </Button>
@@ -53,7 +55,7 @@ export default function Page() {
             <IconCopy stroke={2} />
           </Button>
         </div>
-      </h1>
+      </div>
 
       <List>
         {(friendsQuery.data || []).map((item) => (
