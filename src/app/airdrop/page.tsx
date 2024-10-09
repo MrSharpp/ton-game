@@ -11,7 +11,7 @@ import Link from "next/link";
 
 export default function Home() {
   const wallet = useTonWallet();
-  const [tonConnectUI] = useTonConnectUI();
+  const [tonConnectUI] = useTonConnectUI({});
   const { user, fetchUser, setUser } = useUser();
 
   async function completeTransaction() {
