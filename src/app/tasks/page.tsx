@@ -161,7 +161,7 @@ function TaskPage() {
 
   return (
     <div className="h-full relative px-5">
-      <h1 className="p-5 sticky top-0 z-50 backdrop-blur-lg font-bold text-xl">
+      <h1 className="p-5 sticky top-0 z-50 backdrop-blur-lg font-bold text-xl text-center">
         Tasks
       </h1>
 
@@ -210,16 +210,17 @@ function TaskPage() {
       </div>
 
       <div>
-        <Title weight="3" className="mt-8 mb-5">
-          Time streak Task: <b>{user?.taskStreaks ?? 0}</b>
+        <Title weight="3" className="mt-8 mb-5 flex justify-between">
+          Time streak Task: <b className="mr-10">{user?.taskStreaks ?? 0}</b>
         </Title>
 
-        <Title weight="3">
-          Friend streak Task: <b>{user?.friendStreaks ?? 0}</b>
+        <Title weight="3" className="flex justify-between">
+          Friend streak Task:{" "}
+          <b className="mr-10">{user?.friendStreaks ?? 0}</b>
         </Title>
       </div>
 
-      <div className="mt-8 bottom-0">
+      <div style={{ position: "absolute", width: "100%", bottom: 0 }}>
         <Subheadline level="1" weight="3" className="text-center">
           {"->"} Social Tasks
         </Subheadline>
