@@ -46,14 +46,18 @@ video::-webkit-media-controls-start-playback-button {
 
 *::-webkit-media-controls-panel {
   display: none !important;
-  -webkit-appearance: none;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  -webkit-appearance: none !important;
 }
 
 /* Old shadow dom for play button */
 
 *::-webkit-media-controls-play-button {
   display: none !important;
-  -webkit-appearance: none;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  -webkit-appearance: none !important;
 }
 
 /* New shadow dom for play button */
@@ -62,7 +66,9 @@ video::-webkit-media-controls-start-playback-button {
 
 *::-webkit-media-controls-start-playback-button {
   display: none !important;
-  -webkit-appearance: none;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  -webkit-appearance: none !important;
 }
 
 video::-webkit-media-controls {
