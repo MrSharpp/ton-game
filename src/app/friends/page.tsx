@@ -53,6 +53,13 @@ export default function Page() {
                 {item.Friend.friendStreaks}
               </div>
             }
+            style={{
+              borderBottom: "solid",
+              borderTop: "hidden",
+              borderRight: "hidden",
+              borderLeft: "hidden",
+              borderWidth: "thin",
+            }}
           >
             {item.Friend.firstName} {item.Friend.lastName}
           </Cell>
