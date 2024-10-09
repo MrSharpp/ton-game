@@ -19,6 +19,7 @@ import { useCallback, useEffect, useMemo, useState } from "react";
 import { COUNT_OF_TASKS, TIME_TASK_ADDITION_NUMBER } from "../constants";
 import useCountDown from "react-countdown-hook";
 import duration, { Duration } from "dayjs/plugin/duration";
+import { formatNumber } from "@/utils/format-number";
 
 dayjs.extend(duration);
 
@@ -212,12 +213,13 @@ function TaskPage() {
 
       <div>
         <Headline weight="3" className="mt-8 mb-5 flex justify-between">
-          Time streak Tasak: <b className="mr-10">{user?.taskStreaks ?? 0}</b>
+          Time streak Tasak:{" "}
+          <b className="mr-10">{formatNumber(user?.taskStreaks ?? 0)}</b>
         </Headline>
 
         <Headline weight="3" className="flex justify-between">
           Friend streak Task:{" "}
-          <b className="mr-10">{user?.friendStreaks ?? 0}</b>
+          <b className="mr-10">{formatNumber(user?.friendStreaks ?? 0)}</b>
         </Headline>
       </div>
 

@@ -5,6 +5,7 @@ import { useQuery } from "@tanstack/react-query";
 import { useUtils } from "@telegram-apps/sdk-react";
 import { Button, Cell, List, Title } from "@telegram-apps/telegram-ui";
 import { BOT_USERNAME, SHARE_MESSAGE } from "../constants";
+import { formatNumber } from "@/utils/format-number";
 
 const arr = new Array(15).fill(0).map((_, i) => i);
 
@@ -49,8 +50,8 @@ export default function Page() {
             key={item.Id}
             after={
               <div>
-                Time/Fren Streaks: {item.Friend.taskStreaks} -{" "}
-                {item.Friend.friendStreaks}
+                Time/Fren Streaks: {formatNumber(item.Friend.taskStreaks)} -{" "}
+                {formatNumber(item.Friend.friendStreaks)}
               </div>
             }
             style={{
