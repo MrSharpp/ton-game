@@ -5,3 +5,6 @@ export const SHARE_MESSAGE = `
 %0A•A Distinguished Committed Airdrop in the history of TG mini apps.💰
 %0A•Boost your allocation with time streak tasks & frens streak Tasks.💸
 %0A•Take a Stride and Join us to uplift your crypto Journey.`;
+
+export const TIME_TASK_ADDITION_NUMBER = 100;
+export const FEN_TASK_ADDITION_NUMBER = 1000;

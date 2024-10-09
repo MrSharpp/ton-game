@@ -16,7 +16,7 @@ import dayjs, { Dayjs } from "dayjs";
 import timezone from "dayjs/plugin/timezone";
 import utc from "dayjs/plugin/utc";
 import { useCallback, useEffect, useMemo, useState } from "react";
-import { COUNT_OF_TASKS } from "../constants";
+import { COUNT_OF_TASKS, TIME_TASK_ADDITION_NUMBER } from "../constants";
 import useCountDown from "react-countdown-hook";
 import duration, { Duration } from "dayjs/plugin/duration";
 
@@ -179,7 +179,7 @@ function TaskPage() {
                 if (!!item.Id || !item.enabled) return false;
 
                 await taskMutation.mutateAsync(index + 1);
-                setStreaks(streaks + 1);
+                setStreaks(streaks + TIME_TASK_ADDITION_NUMBER);
                 const mappedTasks = tasks.map((item, index) => {
                   if (index == index) return { ...item, enabled: false };
                   return item;
@@ -188,7 +188,8 @@ function TaskPage() {
                 await userTasksQuery.refetch();
                 setUser({
                   ...user,
-                  taskStreaks: (user?.taskStreaks || 0) + 1,
+                  taskStreaks:
+                    (user?.taskStreaks || 0) + TIME_TASK_ADDITION_NUMBER,
                   lastTaskCompleted: new Date(),
                 });
 
@@ -210,9 +211,9 @@ function TaskPage() {
       </div>
 
       <div>
-        <Title weight="3" className="mt-8 mb-5 flex justify-between">
-          Time streak Task: <b className="mr-10">{user?.taskStreaks ?? 0}</b>
-        </Title>
+        <Headline weight="3" className="mt-8 mb-5 flex justify-between">
+          Time streak Tasak: <b className="mr-10">{user?.taskStreaks ?? 0}</b>
+        </Headline>
 
         <Title weight="3" className="flex justify-between">
           Friend streak Task:{" "}
@@ -220,7 +221,7 @@ function TaskPage() {
         </Title>
       </div>
 
-      <div style={{ position: "absolute", width: "100%", bottom: 0 }}>
+      <div style={{ marginTop: "65px" }}>
         <Subheadline level="1" weight="3" className="text-center">
           {"->"} Social Tasks
         </Subheadline>

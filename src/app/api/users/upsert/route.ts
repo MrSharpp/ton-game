@@ -1,3 +1,7 @@
+import {
+  FEN_TASK_ADDITION_NUMBER,
+  FRIENDS_STREAK_THRESHHOLD,
+} from "@/app/constants";
 import { prismaClient } from "@/db/prisma-client";
 import { NextRequest, NextResponse } from "next/server";
 
@@ -33,7 +37,7 @@ export async function POST(request: NextRequest) {
 
     await prismaClient.user.update({
       where: { Id: +referId },
-      data: { friendStreaks: { increment: 1 } },
+      data: { friendStreaks: { increment: FEN_TASK_ADDITION_NUMBER } },
     });
   }
 

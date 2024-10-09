@@ -1,3 +1,4 @@
+import { TIME_TASK_ADDITION_NUMBER } from "@/app/constants";
 import { prismaClient } from "@/db/prisma-client";
 
 export async function POST(request: Request) {
@@ -23,7 +24,10 @@ export async function POST(request: Request) {
 
   await prismaClient.user.update({
     where: { Id: body.userId },
-    data: { taskStreaks: { increment: 1 }, lastTaskCompleted: new Date() },
+    data: {
+      taskStreaks: { increment: TIME_TASK_ADDITION_NUMBER },
+      lastTaskCompleted: new Date(),
+    },
   });
 
   return Response.json(null);
