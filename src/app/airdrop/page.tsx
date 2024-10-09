@@ -97,7 +97,7 @@ export default function Home() {
       <div className="mt-5 pr-5">
         <ul className="list-disc pl-10">
           <li className="text-base font-light text-left">
-            An airdrop is the distribution of tokens to players wallets. These
+            An airdrop is the distribution of tokens to players’ wallets. These
             tokens will be traded on top exchanges, and you can either sell or
             hold them.
           </li>
