@@ -77,7 +77,7 @@ export default function Page() {
               borderWidth: "thin",
             }}
           >
-            {index + 1} {item.Friend.firstName} {item.Friend.lastName}
+            {index + 1} {"   "} {item.Friend.firstName} {item.Friend.lastName}
           </Cell>
         ))}
       </List>
