@@ -50,8 +50,10 @@ export default function Page() {
             key={item.Id}
             after={
               <div>
-                Time/Fren Streaks: {formatNumber(item.Friend.taskStreaks)} -{" "}
-                {formatNumber(item.Friend.friendStreaks)}
+                {formatNumber(
+                  (item.Friend.taskStreaks || 0) +
+                    (item.Friend.friendStreaks || 0)
+                )}
               </div>
             }
             style={{
