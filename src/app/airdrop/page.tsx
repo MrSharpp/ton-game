@@ -57,7 +57,7 @@ export default function Home() {
       <div className="mb-5">
         <h1 className="text-3xl font-bold">Airdrop</h1>
 
-        <Subheadline>Task for eligible iin airdrop:</Subheadline>
+        <Subheadline>Task for eligible in airdrop:</Subheadline>
       </div>
 
       <div
