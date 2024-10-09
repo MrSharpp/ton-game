@@ -19,7 +19,7 @@ function RoadMap({}: Props) {
           </ul>
         </section>
 
-        <section className="px-5">
+        <section className="px-5 mb-10">
           <h2 className="py-5 font-bold text-xl">Phase 2</h2>
 
           <ul className="list-disc px-5">
