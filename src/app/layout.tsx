@@ -1,4 +1,5 @@
 "use client";
+
 import { Root } from "@/components/Root/Root";
 import AppTabBar from "@/components/TabBar/AppTabBar";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
@@ -14,7 +15,7 @@ const queryClient = new QueryClient();
 
 export default function RootLayout({ children }: Readonly<PropsWithChildren>) {
   return (
-    <html lang="en" style={{ backgroundColor: "black", background: "black" }}>
+    <html lang="en">
       <body>
         <QueryClientProvider client={queryClient}>
           <Root>

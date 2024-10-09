@@ -1,6 +1,14 @@
 @font-face {
   font-family: "font-name";
-  src: url("/FontsFree-Net-HoboStd.ttf");
+  src: url("/calibri/calibri-regular.ttf") format("truetype");
+  font-weight: regular;
+  font-style: normal;
+}
+@font-face {
+  font-family: "font-name";
+  src: url("/calibri/calibri-bold.ttf") format("truetype");
+  font-weight: regular;
+  font-style: normal;
 }
 
 body {
@@ -38,14 +46,18 @@ video::-webkit-media-controls-start-playback-button {
 
 *::-webkit-media-controls-panel {
   display: none !important;
-  -webkit-appearance: none;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  -webkit-appearance: none !important;
 }
 
 /* Old shadow dom for play button */
 
 *::-webkit-media-controls-play-button {
   display: none !important;
-  -webkit-appearance: none;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  -webkit-appearance: none !important;
 }
 
 /* New shadow dom for play button */
@@ -54,5 +66,14 @@ video::-webkit-media-controls-start-playback-button {
 
 *::-webkit-media-controls-start-playback-button {
   display: none !important;
-  -webkit-appearance: none;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  -webkit-appearance: none !important;
+}
+
+video::-webkit-media-controls {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  -webkit-appearance: none !important;
 }

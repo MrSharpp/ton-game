@@ -21,6 +21,7 @@ import { useDidMount } from "@/hooks/useDidMount";
 
 import "./styles.css";
 import { swipeBehavior } from "@telegram-apps/sdk";
+import { SplashScreen } from "@/app/splash-screen";
 
 function App(props: PropsWithChildren) {
   const lp = useLaunchParams();
@@ -94,6 +95,6 @@ export function Root(props: PropsWithChildren) {
       <RootInner {...props} />
     </ErrorBoundary>
   ) : (
-    <div className="root__loading">Loading</div>
+    <SplashScreen path={"/splash.mp4"} />
   );
 }
