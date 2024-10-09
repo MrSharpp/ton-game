@@ -1,6 +1,14 @@
 @font-face {
   font-family: "font-name";
-  src: url("/FontsFree-Net-HoboStd.ttf");
+  src: url("/calibri/calibri-regular.ttf") format("truetype");
+  font-weight: regular;
+  font-style: normal;
+}
+@font-face {
+  font-family: "font-name";
+  src: url("/calibri/calibri-bold.ttf") format("truetype");
+  font-weight: regular;
+  font-style: normal;
 }
 
 body {
