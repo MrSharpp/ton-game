@@ -26,14 +26,13 @@ function RoadMap({}: Props) {
             <li>Snapshot</li>
             <li>TGE</li>
             <li>
-              Allocation of tokens no locking no vesting 92% for community & 8%
-              for team and creators
+              Allocation of tokens, no locking, no vesting, 92% for community &
+              8% for the team and creators
             </li>
             <li>Token listing on top major exchanges</li>
-            <li>
-              Launch Aibulls Memepad Lowest Fees, Aibulls multi-chain swap 40 +
-              Chains, AiBulls wallet with top-tier encryption
-            </li>
+            <li>Launch Aibulls Memepad at lowest fees (0.1 Ton)</li>
+            <li>⁠Aibulls multi-chain swap (40+ Chains)</li>
+            <li>Top-tier encryption of AiBulls wallet</li>
           </ul>
         </section>
       </div>
