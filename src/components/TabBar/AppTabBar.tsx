@@ -18,7 +18,7 @@ const tabItems = [
     to: "/",
   },
   {
-    text: "Friends",
+    text: "Frens",
     icon: <IconUsersGroup />,
     to: "/friends",
   },
