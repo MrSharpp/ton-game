@@ -37,7 +37,7 @@ export default function Page() {
       <h1 className="p-5 sticky top-0 z-50 backdrop-blur-lg font-bold text-xl">
         Friends
         <div style={{ float: "right" }}>
-          <Button size="s" onClick={() => referFriend()} className="mr-10">
+          <Button size="s" onClick={() => referFriend()} className="mr-2">
             Refer A Friend
           </Button>
           <Button
