@@ -15,7 +15,7 @@ export default function Page() {
 
   function referFriend() {
     const encodedUrl = encodeURIComponent(
-      `https://t.me/shahzar_2024_bot/AiBull?startapp=${user?.Id || ""}`
+      `https://t.me/shahzar_2024_bot/${BOT_USERNAME}?startapp=${user?.Id || ""}`
       // `https://t.me/owoelawnbot/mybot?startapp=${user?.Id || ""}`
     );
     utils.openTelegramLink(
@@ -35,13 +35,23 @@ export default function Page() {
     <div>
       <h1 className="p-5 sticky top-0 z-50 backdrop-blur-lg font-bold text-xl">
         Friends
-        <Button
-          style={{ float: "right" }}
-          size="s"
-          onClick={() => referFriend()}
-        >
-          Refer A Friend
-        </Button>
+        <div style={{ float: "right" }}>
+          <Button size="s" onClick={() => referFriend()} className="mr-10">
+            Refer A Friend
+          </Button>
+          <Button
+            size="s"
+            onClick={() =>
+              navigator.clipboard.writeText(
+                `https://t.me/shahzar_2024_bot/${BOT_USERNAME}?startapp=${
+                  user?.Id || ""
+                }`
+              )
+            }
+          >
+            Copy Invite
+          </Button>
+        </div>
       </h1>
 
       <List>
