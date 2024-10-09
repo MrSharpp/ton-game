@@ -58,7 +58,7 @@ export default function Page() {
       </div>
 
       <List>
-        {(friendsQuery.data || []).map((item) => (
+        {(friendsQuery.data || []).map((item, index) => (
           <Cell
             key={item.Id}
             after={
@@ -77,15 +77,9 @@ export default function Page() {
               borderWidth: "thin",
             }}
           >
-            {item.Friend.firstName} {item.Friend.lastName}
+            {index + 1} {item.Friend.firstName} {item.Friend.lastName}
           </Cell>
         ))}
-
-        {/* <div className="py-4 px-6 flex justify-between">
-          <h3>Fname LName</h3>
-
-          <div>Task Streaks: 1</div>
-        </div> */}
       </List>
     </div>
   );
