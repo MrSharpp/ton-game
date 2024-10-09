@@ -4,7 +4,7 @@ import { useUser } from "@/hooks/useUser";
 import { useQuery } from "@tanstack/react-query";
 import { useUtils } from "@telegram-apps/sdk-react";
 import { Button, Cell, List, Title } from "@telegram-apps/telegram-ui";
-import { BOT_USERNAME } from "../constants";
+import { BOT_USERNAME, SHARE_MESSAGE } from "../constants";
 
 const arr = new Array(15).fill(0).map((_, i) => i);
 
@@ -18,7 +18,7 @@ export default function Page() {
       // `https://t.me/owoelawnbot/mybot?startapp=${user?.Id || ""}`
     );
     utils.openTelegramLink(
-      `https://t.me/share/url?url=${encodedUrl.toString()}`
+      `https://t.me/share/url?url=${encodedUrl.toString()}&text=${SHARE_MESSAGE}`
     );
   }
 

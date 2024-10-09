@@ -12,13 +12,15 @@ import Link from "next/link";
 export default function Home() {
   const wallet = useTonWallet();
   const [tonConnectUI] = useTonConnectUI();
-  const { user, fetchUser } = useUser();
+  const { user, fetchUser, setUser } = useUser();
 
   async function completeTransaction() {
     return fetch(`/api/users/${user?.Id}/complete-transaction`, {
       method: "POST",
     });
   }
+
+  console.log(user);
 
   async function sendToOwnerAddress() {
     await tonConnectUI.sendTransaction({
@@ -33,7 +35,7 @@ export default function Home() {
 
     await completeTransaction();
 
-    fetchUser();
+    setUser({ transactionDone: true });
   }
 
   function disconnectWallet() {
@@ -80,7 +82,11 @@ export default function Home() {
 
         {!!wallet && (
           <div className="flex justify-center items-center gap-2">
-            <Button onClick={() => sendToOwnerAddress()} size="s">
+            <Button
+              onClick={() => sendToOwnerAddress()}
+              size="s"
+              disabled={user?.transactionDone}
+            >
               Make A Transaction (0.01 Ton)
             </Button>
             {user?.transactionDone ? " ✅" : ""}
