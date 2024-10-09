@@ -142,7 +142,6 @@ function TaskPage() {
 
     setTasks(mappedTasks);
   }
-  console.log(tasks);
 
   useEffect(() => {
     initTasks();
@@ -223,7 +222,7 @@ function TaskPage() {
       <div>
         <Headline weight="3" className="mt-8 mb-5 flex justify-between">
           Time streak Task:{" "}
-          <b className="mr-10">{formatNumber(user?.taskStreaks ?? 0)}</b>
+          <b className="mr-10">{formatNumber(streaks ?? 0)}</b>
         </Headline>
 
         <Headline weight="3" className="flex justify-between">
