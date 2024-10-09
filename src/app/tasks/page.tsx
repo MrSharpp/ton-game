@@ -221,10 +221,10 @@ function TaskPage() {
         </Headline>
       </div>
 
-      <div style={{ marginTop: "65px" }}>
-        <Subheadline level="1" weight="3" className="text-center">
-          {"->"} Social Tasks
-        </Subheadline>
+      <div style={{ marginTop: "55px" }}>
+        <h1 className="backdrop-blur-lg font-bold text-xl text-center">
+          Social Tasks
+        </h1>
 
         <div className="flex flex-col gap-3 mt-5 ml-5 mr-[60px]">
           <div className="flex justify-between">
