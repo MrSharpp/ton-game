@@ -101,6 +101,15 @@ function TaskPage() {
     },
   });
 
+  useEffect(() => {
+    const isEveryTaskCompleted =
+      userTasksQuery.data?.length == 3 &&
+      userTasksQuery.data?.every((item) => item.Id);
+    if (isEveryTaskCompleted) {
+      resetTasks();
+    }
+  }, [userTasksQuery?.data]);
+
   function initTasks() {
     if (!userTasksQuery.data?.length) return;
 
