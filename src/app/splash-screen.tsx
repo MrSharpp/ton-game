@@ -37,9 +37,10 @@ export function SplashScreen({ path }: { path: string }) {
         loop
         playsInline
         muted
-        autoPlay
+        autoPlay={false}
         controls={false}
         className="w-full h-screen object-cover"
+        preload="auto"
       >
         <source src={path} type="video/mp4" />
         Your browser does not support the video tag.
