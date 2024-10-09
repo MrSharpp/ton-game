@@ -54,8 +54,6 @@ export function UserProvider({ children }: any) {
     }, 3_000);
   }, []);
 
-  if (loading) return <SplashScreen path={"/splash.mp4"} />;
-
   return (
     <UserContextProvider value={{ user: user, fetchUser, setUser }}>
       {children}
