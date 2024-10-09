@@ -21,3 +21,38 @@ body {
 * {
   font-family: "font-name" !important;
 }
+
+video::-webkit-media-controls-start-playback-button {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  -webkit-appearance: none !important;
+}
+
+:host::shadow::-webkit-media-controls-container {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  -webkit-appearance: none !important;
+}
+
+*::-webkit-media-controls-panel {
+  display: none !important;
+  -webkit-appearance: none;
+}
+
+/* Old shadow dom for play button */
+
+*::-webkit-media-controls-play-button {
+  display: none !important;
+  -webkit-appearance: none;
+}
+
+/* New shadow dom for play button */
+
+/* This one works! */
+
+*::-webkit-media-controls-start-playback-button {
+  display: none !important;
+  -webkit-appearance: none;
+}
