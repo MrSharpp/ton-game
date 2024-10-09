@@ -215,10 +215,10 @@ function TaskPage() {
           Time streak Tasak: <b className="mr-10">{user?.taskStreaks ?? 0}</b>
         </Headline>
 
-        <Title weight="3" className="flex justify-between">
+        <Headline weight="3" className="flex justify-between">
           Friend streak Task:{" "}
           <b className="mr-10">{user?.friendStreaks ?? 0}</b>
-        </Title>
+        </Headline>
       </div>
 
       <div style={{ marginTop: "65px" }}>
