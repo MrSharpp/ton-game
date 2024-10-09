@@ -98,8 +98,8 @@ export default function Home() {
         <ul className="list-disc pl-10">
           <li className="text-base font-light text-left">
             An airdrop is the distribution of tokens to players’ wallets. These
-            tokens will be traded on top exchanges, and you can either sell or
-            hold them.
+            tokens will be traded on top exchanges, you can either sell or hold
+            them.
           </li>
           <li className="text-base font-light text-left">
             To receive your tokens, you must complete the two tasks above.
