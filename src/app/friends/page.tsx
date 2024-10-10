@@ -16,7 +16,7 @@ export default function Page() {
 
   function referFriend() {
     const encodedUrl = encodeURIComponent(
-      `https://t.me/shahzar_2024_bot/${BOT_USERNAME}?startapp=${user?.Id || ""}`
+      `https://t.me/${BOT_USERNAME}/${BOT_USERNAME}?startapp=${user?.Id || ""}`
       // `https://t.me/owoelawnbot/mybot?startapp=${user?.Id || ""}`
     );
     utils.openTelegramLink(
@@ -46,7 +46,7 @@ export default function Page() {
             size="s"
             onClick={() =>
               navigator.clipboard.writeText(
-                `https://t.me/shahzar_2024_bot/${BOT_USERNAME}?startapp=${
+                `https://t.me/${BOT_USERNAME}/${BOT_USERNAME}?startapp=${
                   user?.Id || ""
                 }`
               )
