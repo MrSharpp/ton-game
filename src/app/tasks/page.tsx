@@ -1,28 +1,18 @@
 "use client";
 import { useUser } from "@/hooks/useUser";
+import { formatNumber } from "@/utils/format-number";
 import { useMutation, useQuery } from "@tanstack/react-query";
-import { date, useLaunchParams, useUtils } from "@telegram-apps/sdk-react";
-import {
-  Button,
-  Caption,
-  Cell,
-  Checkbox,
-  Headline,
-  LargeTitle,
-  Subheadline,
-  Title,
-} from "@telegram-apps/telegram-ui";
+import { useLaunchParams, useUtils } from "@telegram-apps/sdk-react";
+import { Caption, Headline } from "@telegram-apps/telegram-ui";
 import dayjs, { Dayjs } from "dayjs";
+import duration from "dayjs/plugin/duration";
 import timezone from "dayjs/plugin/timezone";
 import utc from "dayjs/plugin/utc";
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import { COUNT_OF_TASKS, TIME_TASK_ADDITION_NUMBER } from "../constants";
-import useCountDown from "react-countdown-hook";
-import duration, { Duration } from "dayjs/plugin/duration";
-import { formatNumber } from "@/utils/format-number";
+import Loading from "@/components/Loading";
 
 dayjs.extend(duration);
-
 dayjs.extend(utc);
 dayjs.extend(timezone);
 
@@ -168,6 +158,8 @@ function TaskPage() {
     });
   }
 
+  const currentStreakIndex = tasks.filter((tsk) => tsk.enabled).length - 1;
+
   return (
     <div className="h-full relative px-5">
       <h1 className="p-5 sticky top-0 z-50 backdrop-blur-lg font-bold text-xl text-center">
@@ -178,7 +170,7 @@ function TaskPage() {
         {tasks.map((item: Task, index) => (
           <div key={item.Id}>
             <button
-              className="px-5  text-black rounded-xl py-2"
+              className="px-5  text-black rounded-xl py-2 relative "
               style={{
                 backgroundColor: !!item.Id || !item.enabled ? "gray" : "white",
                 fontSize: 15,
@@ -208,6 +200,9 @@ function TaskPage() {
                 setEndTime(dayjs().add(1, "minutes"));
               }}
             >
+              <Loading
+                active={taskMutation.isPending && currentStreakIndex === index}
+              />
               {item.completeTime ? "Claimed" : `Claim ${index + 1}`}
             </button>
           </div>
