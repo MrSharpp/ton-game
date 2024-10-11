@@ -48,7 +48,7 @@ export default function Page() {
         src="banner.png"
         height={120}
         width={120}
-        className="mr-auto ml-auto"
+        className="mr-auto ml-auto mt-5"
       />
 
       <div className="flex align-center">
