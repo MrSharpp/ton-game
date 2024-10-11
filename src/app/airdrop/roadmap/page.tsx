@@ -32,7 +32,7 @@ function RoadMap({}: Props) {
             <li>Token listing on top major exchanges</li>
             <li>Launch Aibulls Memepad at lowest fees (0.1 Ton)</li>
             <li>⁠Aibulls multi-chain swap (40+ Chains)</li>
-            <li>Top-tier encryption of AiBulls wallet</li>
+            <li>AiBulls wallet with top-tier encryption</li>
           </ul>
         </section>
       </div>
