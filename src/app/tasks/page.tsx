@@ -244,7 +244,7 @@ function TaskPage() {
             <button
               style={{ backgroundColor: "white", color: "black" }}
               className="px-2 rounded-lg"
-              onClick={() => util.openLink("https://t.me/Aibullsio_community")}
+              onClick={() => util.openLink("https://x.com/aibullsio")}
             >
               Join
             </button>
