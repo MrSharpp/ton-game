@@ -30,7 +30,7 @@ body {
   font-family: "font-name" !important;
 }
 
-video::-webkit-media-controls-start-playback-button {
+#player::-webkit-media-controls-start-playback-button {
   display: none !important;
   visibility: hidden !important;
   opacity: 0 !important;
@@ -71,9 +71,45 @@ video::-webkit-media-controls-start-playback-button {
   -webkit-appearance: none !important;
 }
 
-video::-webkit-media-controls {
-  display: none !important;
+#video::-webkit-media-controls {
+  player: none !important;
   visibility: hidden !important;
   opacity: 0 !important;
   -webkit-appearance: none !important;
+}
+
+*::-webkit-media-controls-panel {
+  display: none !important;
+
+  -webkit-appearance: none;
+}
+
+*::--webkit-media-controls-play-button {
+  display: none !important;
+
+  -webkit-appearance: none;
+}
+
+*::-webkit-media-controls-start-playback-button {
+  display: none !important;
+
+  -webkit-appearance: none;
+}
+
+#player::-webkit-media-controls {
+  display: none !important;
+  opacity: 0;
+}
+#player::-webkit-media-controls-start-playback-button {
+  display: none !important;
+}
+
+::-webkit-media-controls {
+  display: none !important;
+}
+
+.splash {
+  height: 100vh;
+  overflow-y: hidden;
+  filter: blur(npx);
 }

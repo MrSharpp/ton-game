@@ -1,17 +1,17 @@
 "use client";
 
+import { ElementRef, useEffect, useRef } from "react";
+
 export default function Home() {
-  return (
-    <video
-      loop
-      playsInline
-      muted
-      autoPlay
-      controls={false}
-      className="h-full w-full h-inherit object-cover"
-    >
-      <source src={"/splash.mp4"} type="video/mp4" />
-      Your browser does not support the video tag.
-    </video>
-  );
+  const videoRef = useRef<ElementRef<"video">>(null);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (video) {
+      video.play();
+      video.controls = false;
+    }
+  }, []);
+
+  return <img className="w-full h-screen" src="/splash.gif"></img>;
 }

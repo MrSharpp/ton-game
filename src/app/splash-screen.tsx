@@ -31,20 +31,10 @@ export function SplashScreen({ path }: { path: string }) {
   }, []);
 
   return (
-    <div className="w-full h-screen">
-      <video
-        ref={videoRef}
-        loop
-        playsInline
-        muted
-        autoPlay={false}
-        controls={false}
-        className="w-full h-screen object-cover"
-        preload="auto"
-      >
-        <source src={path} type="video/mp4" />
-        Your browser does not support the video tag.
-      </video>
-    </div>
+    <img
+      className="w-full h-screen splash"
+      src="/splash.gif"
+      height={"100%"}
+    ></img>
   );
 }
