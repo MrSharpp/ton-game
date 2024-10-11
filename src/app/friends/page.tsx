@@ -40,7 +40,7 @@ export default function Page() {
   });
 
   return (
-    <div style={{ overflow: "auto" }}>
+    <div style={{ overflow: "auto", marginTop: "60px" }}>
       <LargeTitle className="text-center mx-10">
         Invite a fren to get 1000 streak points!
       </LargeTitle>
