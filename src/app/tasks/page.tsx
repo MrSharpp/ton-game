@@ -79,19 +79,15 @@ function TaskPage() {
     return () => clearTimeout(id);
   }, [user?.lastTaskCompleted, timeLeft]);
 
-  const constructTasks = (data: any[]) => {
-    let items = new Array(COUNT_OF_TASKS)
-      .fill({ enabled: false })
-      .map((item, index) => data[index] || item);
-    return items;
-  };
-
   const userTasksQuery = useQuery({
     queryFn: () => fetch(`/api/tasks/${userID}`).then((res) => res.json()),
     queryKey: ["tasks", userID],
     placeholderData: [],
     select(data) {
-      return constructTasks(data);
+      let items = new Array(COUNT_OF_TASKS)
+        .fill({ enabled: false })
+        .map((item, index) => data[index] || item);
+      return items;
     },
   });
 
@@ -156,8 +152,8 @@ function TaskPage() {
       }),
       method: "POST",
     }).then(async () => {
+      setTasks([]);
       await fetchUser().catch(console.log);
-      setTasks(constructTasks([]));
       userTasksQuery.refetch();
     });
   }
@@ -185,23 +181,23 @@ function TaskPage() {
 
                 await taskMutation.mutateAsync(index + 1);
                 setStreaks(streaks + TIME_TASK_ADDITION_NUMBER);
-                const mappedTasks = tasks.map((item, index) => {
-                  if (index == index) return { ...item, enabled: false };
-                  return item;
-                });
-                setTasks(mappedTasks);
-                await userTasksQuery.refetch();
                 setUser({
                   ...user,
                   taskStreaks:
                     (user?.taskStreaks || 0) + TIME_TASK_ADDITION_NUMBER,
                   lastTaskCompleted: new Date(),
                 });
+                setEndTime(dayjs().add(1, "minutes"));
 
                 if (index + 1 == userTasksQuery.data?.length) {
                   await resetTasks();
                 }
-                setEndTime(dayjs().add(1, "minutes"));
+                const mappedTasks = tasks.map((item, index) => {
+                  if (index == index) return { ...item, enabled: false };
+                  return item;
+                });
+                setTasks(mappedTasks);
+                await userTasksQuery.refetch();
               }}
             >
               <Loading
