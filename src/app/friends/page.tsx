@@ -3,7 +3,14 @@
 import { useUser } from "@/hooks/useUser";
 import { useQuery } from "@tanstack/react-query";
 import { useUtils } from "@telegram-apps/sdk-react";
-import { Button, Cell, List, Title } from "@telegram-apps/telegram-ui";
+import {
+  Button,
+  Cell,
+  LargeTitle,
+  List,
+  Subheadline,
+  Title,
+} from "@telegram-apps/telegram-ui";
 import { BOT_USERNAME, SHARE_MESSAGE } from "../constants";
 import { formatNumber } from "@/utils/format-number";
 import { IconCopy } from "@tabler/icons-react";
@@ -33,7 +40,7 @@ export default function Page() {
   });
 
   return (
-    <div>
+    <div style={{ overflow: "auto" }}>
       <div className="flex align-center">
         <h1 className="p-5 sticky top-0 z-50 backdrop-blur-lg font-bold text-xl">
           Frens
@@ -56,6 +63,16 @@ export default function Page() {
           </Button>
         </div>
       </div>
+
+      <LargeTitle className="text-center mx-10">
+        Invite a fren to get 1000 streak points!
+      </LargeTitle>
+      <img
+        src="banner.png"
+        height={200}
+        width={200}
+        className="mr-auto ml-auto"
+      />
 
       <List>
         {(friendsQuery.data || []).map((item, index) => (
