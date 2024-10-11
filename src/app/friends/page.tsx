@@ -41,6 +41,16 @@ export default function Page() {
 
   return (
     <div style={{ overflow: "auto" }}>
+      <LargeTitle className="text-center mx-10">
+        Invite a fren to get 1000 streak points!
+      </LargeTitle>
+      <img
+        src="banner.png"
+        height={120}
+        width={120}
+        className="mr-auto ml-auto"
+      />
+
       <div className="flex align-center">
         <h1 className="p-5 sticky top-0 z-50 backdrop-blur-lg font-bold text-xl">
           Frens
@@ -63,16 +73,6 @@ export default function Page() {
           </Button>
         </div>
       </div>
-
-      <LargeTitle className="text-center mx-10">
-        Invite a fren to get 1000 streak points!
-      </LargeTitle>
-      <img
-        src="banner.png"
-        height={120}
-        width={120}
-        className="mr-auto ml-auto"
-      />
 
       <List>
         {(friendsQuery.data || []).map((item, index) => (
