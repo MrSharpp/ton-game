@@ -153,7 +153,7 @@ function TaskPage() {
       method: "POST",
     }).then(async () => {
       setTasks([]);
-      await fetchUser();
+      await fetchUser().catch(console.log);
       userTasksQuery.refetch();
     });
   }
