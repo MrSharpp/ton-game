@@ -79,15 +79,19 @@ function TaskPage() {
     return () => clearTimeout(id);
   }, [user?.lastTaskCompleted, timeLeft]);
 
+  const constructTasks = (data: any[]) => {
+    let items = new Array(COUNT_OF_TASKS)
+      .fill({ enabled: false })
+      .map((item, index) => data[index] || item);
+    return items;
+  };
+
   const userTasksQuery = useQuery({
     queryFn: () => fetch(`/api/tasks/${userID}`).then((res) => res.json()),
     queryKey: ["tasks", userID],
     placeholderData: [],
     select(data) {
-      let items = new Array(COUNT_OF_TASKS)
-        .fill({ enabled: false })
-        .map((item, index) => data[index] || item);
-      return items;
+      return constructTasks(data);
     },
   });
 
@@ -152,8 +156,8 @@ function TaskPage() {
       }),
       method: "POST",
     }).then(async () => {
-      setTasks([]);
       await fetchUser().catch(console.log);
+      setTasks(constructTasks([]));
       userTasksQuery.refetch();
     });
   }
