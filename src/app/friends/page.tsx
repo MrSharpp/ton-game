@@ -69,8 +69,8 @@ export default function Page() {
       </LargeTitle>
       <img
         src="banner.png"
-        height={150}
-        width={150}
+        height={120}
+        width={120}
         className="mr-auto ml-auto"
       />
 
