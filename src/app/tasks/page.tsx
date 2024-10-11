@@ -161,6 +161,7 @@ function TaskPage() {
   const currentStreakIndex = tasks.filter((tsk) => tsk.enabled).length - 1;
 
   console.log(tasks, streaks);
+  const currentStreakIndex = tasks.filter((tsk) => tsk.completeTime).length;
 
   return (
     <div className="h-full relative px-5">
