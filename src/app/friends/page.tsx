@@ -46,9 +46,9 @@ export default function Page() {
             size="s"
             onClick={() =>
               navigator.clipboard.writeText(
-                `${SHARE_MESSAGE}\nhttps://t.me/${BOT_USERNAME}?startapp=${
-                  user?.Id || ""
-                }`
+                `${decodeURI(
+                  SHARE_MESSAGE
+                )}\nhttps://t.me/${BOT_USERNAME}?startapp=${user?.Id || ""}`
               )
             }
           >
