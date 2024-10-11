@@ -87,7 +87,7 @@ export default function Home() {
               size="s"
               disabled={user?.transactionDone}
             >
-              Make A Transaction (0.01 Ton)
+              Make s small Transaction
             </Button>
             {user?.transactionDone ? " ✅" : ""}
           </div>

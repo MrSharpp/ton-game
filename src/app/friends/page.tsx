@@ -46,7 +46,9 @@ export default function Page() {
             size="s"
             onClick={() =>
               navigator.clipboard.writeText(
-                `https://t.me/${BOT_USERNAME}?startapp=${user?.Id || ""}`
+                `${SHARE_MESSAGE}\nhttps://t.me/${BOT_USERNAME}?startapp=${
+                  user?.Id || ""
+                }`
               )
             }
           >
