@@ -160,6 +160,8 @@ function TaskPage() {
 
   const currentStreakIndex = tasks.filter((tsk) => tsk.enabled).length - 1;
 
+  console.log(tasks, streaks);
+
   return (
     <div className="h-full relative px-5">
       <h1 className="p-5 sticky top-0 z-50 backdrop-blur-lg font-bold text-xl text-center">
@@ -170,7 +172,7 @@ function TaskPage() {
         {tasks.map((item: Task, index) => (
           <div key={item.Id}>
             <button
-              className="px-5  text-black rounded-xl py-2 relative "
+              className="px-5  text-black rounded-xl py-2 relative w-full"
               style={{
                 backgroundColor: !!item.Id || !item.enabled ? "gray" : "white",
                 fontSize: 15,
@@ -203,11 +205,19 @@ function TaskPage() {
               <Loading
                 active={taskMutation.isPending && currentStreakIndex === index}
               />
-              {item.completeTime ? "Claimed" : `Claim ${index + 1}`}
+
+              <div className="flex flex-col">
+                <span>
+                  {item.completeTime ? "Claimed" : `Claim ${index + 1}`}
+                </span>
+
+                <span className="text-xs">100 Points</span>
+              </div>
             </button>
           </div>
         ))}
       </div>
+
       <div className="text-center">
         <Caption weight="3">
           <b>Unlock</b> Time Left: <Countdown endTime={endTime} />
@@ -216,13 +226,11 @@ function TaskPage() {
 
       <div>
         <Headline weight="3" className="mt-8 mb-5 flex justify-between">
-          Time streak Task:{" "}
-          <b className="mr-10">{formatNumber(streaks ?? 0)}</b>
+          Time streak Task: <b>{formatNumber(streaks ?? 0)}</b>
         </Headline>
 
         <Headline weight="3" className="flex justify-between">
-          Fren streak Task:{" "}
-          <b className="mr-10">{formatNumber(user?.friendStreaks ?? 0)}</b>
+          Fren streak Task: <b>{formatNumber(user?.friendStreaks ?? 0)}</b>
         </Headline>
       </div>
 
@@ -231,7 +239,7 @@ function TaskPage() {
           Social Tasks
         </h1>
 
-        <div className="flex flex-col gap-3 mt-5 ml-5 mr-[60px]">
+        <div className="flex flex-col gap-3 mt-5">
           <div className="flex justify-between">
             <Headline weight="3">X Account</Headline>
 
