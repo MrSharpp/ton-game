@@ -221,7 +221,7 @@ function TaskPage() {
         </Headline>
 
         <Headline weight="3" className="flex justify-between">
-          Friend streak Task:{" "}
+          Fren streak Task:{" "}
           <b className="mr-10">{formatNumber(user?.friendStreaks ?? 0)}</b>
         </Headline>
       </div>

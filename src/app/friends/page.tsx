@@ -36,11 +36,11 @@ export default function Page() {
     <div>
       <div className="flex align-center">
         <h1 className="p-5 sticky top-0 z-50 backdrop-blur-lg font-bold text-xl">
-          Friends
+          Frens
         </h1>
         <div className="ml-auto mr-2 flex " style={{ alignItems: "center" }}>
           <Button size="s" onClick={() => referFriend()} className="mr-2">
-            Refer A Friend
+            Refer A Fren
           </Button>
           <Button
             size="s"
