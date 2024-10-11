@@ -244,11 +244,7 @@ function TaskPage() {
             <button
               style={{ backgroundColor: "white", color: "black" }}
               className="px-2 rounded-lg"
-              onClick={() =>
-                util.openLink(
-                  "https://x.com/Aibullsio?t=QgDntFSRp7-hQo8NXdgWyA&s=09"
-                )
-              }
+              onClick={() => util.openLink("https://t.me/Aibullsio_community")}
             >
               Join
             </button>
@@ -260,9 +256,7 @@ function TaskPage() {
               style={{ backgroundColor: "white", color: "black" }}
               className="px-2 rounded-lg"
               onClick={() =>
-                util.openLink(
-                  "https://www.instagram.com/aibulls.io/profilecard/?igsh=MThhM3VoampqbXZi"
-                )
+                util.openLink("https://www.instagram.com/aibulls.io")
               }
             >
               Join
