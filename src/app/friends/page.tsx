@@ -65,7 +65,7 @@ export default function Page() {
               navigator.clipboard.writeText(
                 `https://t.me/${BOT_USERNAME}?startapp=${
                   user?.Id || ""
-                }\n${decodeURI(SHARE_MESSAGE)}`
+                }\n${decodeURI(SHARE_MESSAGE.replaceAll("%0A", ""))}`
               )
             }
           >
