@@ -63,14 +63,14 @@ function TaskPage() {
   const util = useUtils();
   const [tasks, setTasks] = useState<Task[]>([]);
   const [endTime, setEndTime] = useState(
-    dayjs(user?.lastTaskCompleted).add(1, "minutes")
+    dayjs(user?.lastTaskCompleted).add(1, "hours")
   );
   const timeLeft = dayjs
     .duration((endTime.unix() - dayjs().unix()) * 1000)
     .asSeconds();
 
   useEffect(() => {
-    const endTime = dayjs(user?.lastTaskCompleted).add(1, "minutes");
+    const endTime = dayjs(user?.lastTaskCompleted).add(1, "hours");
     setEndTime(endTime);
     const id = setTimeout(() => {
       initTasks();
@@ -187,7 +187,7 @@ function TaskPage() {
                     (user?.taskStreaks || 0) + TIME_TASK_ADDITION_NUMBER,
                   lastTaskCompleted: new Date(),
                 });
-                setEndTime(dayjs().add(1, "minutes"));
+                setEndTime(dayjs().add(1, "hours"));
 
                 if (index + 1 == userTasksQuery.data?.length) {
                   await resetTasks();

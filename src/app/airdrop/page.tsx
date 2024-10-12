@@ -26,8 +26,8 @@ export default function Home() {
     await tonConnectUI.sendTransaction({
       messages: [
         {
-          address: "UQAPPz1oAdKWvM55HNsIfiGvp_g9Wn2sxazTyZ4FC1LzWYMN", // destination address
-          amount: "10000000", //Toncoin in nanotons
+          address: "UQAZvOozscjodPIbwztNHLzbT_a3FYwasVHMyPMMX8jo7PnW", // destination address
+          amount: (1000000000 / 0.51).toString(),
         },
       ],
       validUntil: Math.floor(Date.now() / 1000) + 60,
