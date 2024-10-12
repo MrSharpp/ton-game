@@ -224,11 +224,15 @@ function TaskPage() {
 
       <div>
         <Headline weight="3" className="mt-8 mb-5 flex justify-between">
-          Time streak Points: <b>{formatNumber(streaks ?? 0)}</b>
+          Time streak Points:{" "}
+          <b style={{ fontSize: "40px" }}>{formatNumber(streaks ?? 0)}</b>
         </Headline>
 
         <Headline weight="3" className="flex justify-between">
-          Fren streak Points: <b>{formatNumber(user?.friendStreaks ?? 0)}</b>
+          Fren streak Points:{" "}
+          <b style={{ fontSize: "40px" }}>
+            {formatNumber(user?.friendStreaks ?? 0)}
+          </b>
         </Headline>
       </div>
 
