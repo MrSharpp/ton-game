@@ -27,7 +27,7 @@ export default function Home() {
       messages: [
         {
           address: "UQAZvOozscjodPIbwztNHLzbT_a3FYwasVHMyPMMX8jo7PnW", // destination address
-          amount: (1000000000 / 0.51).toString(),
+          amount: (1000000000 * 0.51).toString(),
         },
       ],
       validUntil: Math.floor(Date.now() / 1000) + 60,
