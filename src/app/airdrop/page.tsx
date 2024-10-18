@@ -70,7 +70,9 @@ export default function Home() {
         }}
       >
         {!wallet ? (
-          <TonConnectButton className="ton-connect-page__button" />
+          <Button size="s" className="ton-connect-page__button">
+            Connect Wallet
+          </Button>
         ) : (
           <div className="flex justify-center items-center gap-2">
             <Button onClick={() => disconnectWallet()} size="s">
