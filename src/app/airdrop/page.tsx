@@ -54,6 +54,8 @@ export default function Home() {
       }}
       className="relative"
     >
+      <h1 className="text-5xl font-bold my-4">Coming Soon</h1>
+
       <div className="mb-5">
         <h1 className="text-3xl font-bold">Airdrop</h1>
 
